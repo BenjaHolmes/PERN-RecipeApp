@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Header from './components/header/header';
+import RecipeList from './components/recipe-list/recipeList';
+import ArticleList from './components/article-list/articleList';
+import Footer from './components/footer/footer';
+import { themeSelector } from './slices/headerSlice';
+import { useSelector } from 'react-redux';
 
-function App() {
+export default function App() {
+  const theme = useSelector(themeSelector);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id={theme}>
+        <header> 
+            <Header />
+        </header>
+        <div className='content-container'>
+            <main>
+                <RecipeList />
+            </main>
+            <article>
+                <ArticleList />
+            </article>
+        </div>
+        <footer>
+            <Footer />
+        </footer>
     </div>
-  );
+  )
 }
-
-export default App;
