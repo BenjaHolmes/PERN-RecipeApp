@@ -8,7 +8,8 @@ import Account from './menuIcons/accountIcon.png';
 import Info from './menuIcons/infoIcon.png';
 import HomePage from './menuIcons/homepageIcon.png';
 import LogInMenu from '../log-in/logInMenu';
-import { themeSelector, menuSelector, themeToggle, menuToggle, logInSelector, logInToggle } from '../../slices/headerSlice';
+import { themeSelector, menuSelector, themeToggle, menuToggle, 
+        logInSelector, logInToggle } from '../../slices/headerSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +36,8 @@ export default function Header() {
   return (
     <header className='header-container'>
         <div className='left-side'>
-            <img src={logo} className='logo' alt='The Sites Logo of an Apple, Knife and Fork' />
+            <img src={logo} className='logo' onClick={()=>navigate('/')} 
+                alt='The Sites Logo of an Apple, Knife and Fork' />
             <h1> Midweek Meal Planner </h1>
         </div>
         <div className='right-side'>

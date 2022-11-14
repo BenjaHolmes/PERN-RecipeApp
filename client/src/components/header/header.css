@@ -5,7 +5,7 @@
     max-height: 150px;
     min-height: 100px;
     background-color: #5DAA68;
-    border-bottom: 1px solid #3F6844;
+    border-bottom: 3px solid #3F6844;
 }
 #Dark .header-container {
     display: flex;
@@ -14,7 +14,7 @@
     max-height: 150px;
     min-height: 100px;
     background-color: #203b24;
-    border-bottom: 1px solid #3F6844;
+    border-bottom: 3px solid #5DAA68;
 }
 .logo {
     height: 7.5%;
@@ -34,22 +34,30 @@
     margin-right: 20px;
     width: 50%;
 }
-.left-side img {
+#Light .left-side img {
     margin-left: 10px;
     height: 85px;
     width: 65px;
     border-radius: 20px;
-    border: 1px solid #3F6844;
+    border: 2px solid #3F6844;
+    background-color: #FAF1CF;
+    cursor: pointer;
+}
+#Dark .left-side img {
+    margin-left: 10px;
+    height: 85px;
+    width: 65px;
+    border-radius: 20px;
+    border: 2px solid #5DAA68;
     background-color: #FAF1CF;
     cursor: pointer;
 }
 .left-side h1 {
     margin-left: 15px;
-    font-family: 'Bebas Neue', cursive;
     color: #FAF1CF;
-    letter-spacing: 5px;
+    letter-spacing: 8px;
     width: 100%;
-    text-shadow: -1px -1px 0 rgb(58, 58, 58), 1px -1px 0 rgb(58, 58, 58), -1px 1px 0 #000, 1px 1px 0 #000;
+    text-shadow: 3px 3px #203b24;
 }
 .menu-logo {
     height: 35%;
