@@ -1,11 +1,13 @@
 import React from 'react';
+import RecipeCard from './recipeCard.js';
 import './recipe.css';
 
 const RecipeList = () => {
     return (
-        <div>
-            Recipe List
-        </div>
+        <main className='recipeListHolder'>
+            <RecipeCard />
+            <RecipeCard />
+        </main>
     );
 }
 

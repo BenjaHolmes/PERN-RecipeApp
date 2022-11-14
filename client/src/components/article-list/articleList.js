@@ -1,11 +1,12 @@
 import React from 'react';
+import ArticleCard from './articleCard.js';
 import './article.css';
 
 const ArticleList = () => {
     return (
-        <div>
-            Article List
-        </div>
+        <article className='articleListHolder'>
+            <ArticleCard />
+        </article>
     );
 }
 

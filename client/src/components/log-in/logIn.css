@@ -1,0 +1,133 @@
+#Dark .loginContainer {
+    border: 1px solid #3F6844;
+    background-color: #203b24;;
+    position: absolute;
+    width: 150px;
+    height: 170px;
+    top: 80px;
+    right: 89px;
+    border-radius: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#Light .loginContainer {
+    border: 1px solid #3F6844;
+    background-color: #5DAA68;
+    position: absolute;
+    width: 150px;
+    height: 170px;
+    top: 80px;
+    right: 89px;
+    border-radius: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.loginContainer button {
+    width: 80%;
+    height: 30px;
+    margin: 8px;
+    margin-bottom: 3px;
+    background-color: #FAF1CF;
+    border-radius: 10%;
+    cursor: pointer;
+}
+.loginContainer p {
+    color: white;
+    position: absolute;
+    font-size: 18px;
+    font-weight: bold;
+    top: -15px;
+    right: 20px;
+    cursor: pointer;
+}
+.authBox {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.authBox div {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.authBox div input {
+    height: 20px;
+    width: 50%;
+    min-width: 100px;
+    margin: 5px;
+    text-align: center;
+}
+.authBox div button {
+    height: 30px;
+    width: 25%;
+    min-width: 100px;
+    margin: 5px;
+}
+#Light .logIn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    border: 2px solid #203b24;
+    background-color: #5DAA68;
+    margin: 35px;
+}
+#Dark .logIn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    border: 2px solid #5DAA68 ;
+    background-color: #203b24;
+    margin: 35px;
+}
+#Light .register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    border: 2px solid #203b24;
+    background-color: #5DAA68;
+    margin: 35px;
+}
+#Dark .register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    border: 2px solid #5DAA68 ;
+    background-color: #203b24;
+    margin: 35px;
+}
+#Light .authBox h2 {
+    position: absolute;
+    top: 140px;
+    font-size: 35px;
+    color: #FAF1CF;
+    text-shadow: 3px 3px #203b24;
+}
+#Dark .authBox h2 {
+    position: absolute;
+    top: 140px;
+    font-size: 35px;
+    color: #FAF1CF;
+    text-shadow: 1px 1px #5DAA68;
+}
+.accountBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 600px;
+}

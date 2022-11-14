@@ -1,29 +1,28 @@
 import React from 'react'
 import Header from './components/header/header';
-import RecipeList from './components/recipe-list/recipeList';
-import ArticleList from './components/article-list/articleList';
 import Footer from './components/footer/footer';
 import { themeSelector } from './slices/headerSlice';
 import { useSelector } from 'react-redux';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import './index.css'
+import MainPage from './components/mainPage/mainPage';
+import AuthPage from './components/log-in/authPage';
 
 export default function App() {
   const theme = useSelector(themeSelector);
   return (
     <div id={theme}>
-        <header> 
-            <Header />
-        </header>
-        <div className='content-container'>
-            <main>
-                <RecipeList />
-            </main>
-            <article>
-                <ArticleList />
-            </article>
-        </div>
-        <footer>
-            <Footer />
-        </footer>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<> <Header /> <MainPage /> <Footer /> </>} />
+            <Route path='/auth' element={<> <Header /> <AuthPage /> <Footer /> </>}/>
+                
+          </Routes>
+        </BrowserRouter>
     </div>
   )
 }
