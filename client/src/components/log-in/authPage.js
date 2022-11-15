@@ -4,9 +4,10 @@ import { setLogInUsername, setLogInPassword,
     setRegisterUsername, setRegisterEmail, setRegisterPassword,
     logInUsernameSelector, logInPasswordSelector,
     registerUsernameSelector, registerEmailSelector, registerPasswordSelector,
-    registerUser, logInUser
+    registerUser, logInUser, getUser
 } from '../../slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
+
 
 
 const AuthPage = () => {
@@ -33,7 +34,7 @@ const AuthPage = () => {
     };
 
     const handleGetUser = () => {
-
+        dispatch(getUser());
     }
     return (
         <div>

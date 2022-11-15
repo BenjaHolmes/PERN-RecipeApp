@@ -1,16 +1,15 @@
-// const mongoose = require('mongoose');
+// Required Modules ------------------------------------------------------
+
 const cors = require('cors');
 const express = require('express');
 const pool = require('./db');
-// const passport = require('passport');
-// const passportLocal = require('passport-local').Strategy;
-// const cookieParser = require('cookie-parser');
-
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
-// const session = require('express-session');
+const session = require('express-session');
 const app = express();
 
-// // Middleware
+// Middleware ------------------------------------------------------------
 
 // Turns incoming data into JSON, replacement for body-parser
 app.use(express.json());
@@ -21,28 +20,42 @@ app.use(cors({
     credentials: true
 }))
 
-// // Creates our session to store id in cookie
-// app.use(session({
-//     secret: 'secret',
-//     resave: true,
-//     saveUninitialized: true,
-// }));
+// Creates our session to store id in cookie
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
+}));
 
-// // According to docs might not need this anymore.
-// app.use(cookieParser('secret'))
+// Passport Config --------------------------------------------------------
+
+require('./config/passportConfig');
+// Reloads passport each time user navigates to new route to check for session expiration etc
+app.use(passport.initialize());
+// Allows passport to use session object for authentication
+app.use(passport.session());
+
+// Middleware to check if passport and session are working
+app.use((req, res, next) => {
+    console.log(req.session);
+    console.log(req.user);
+    next();
+});
 
 
-
+// Routes ----------------------------------------------------------------
 
 app.get('/', (req, res) => {
     console.log('server working');
     res.send('server working');
 })
 
-//Routes
-app.post('/auth/login', (req, res) => {
-    console.log(req.body);
-})
+app.post('/auth/login', passport.authenticate('local'), (req, res, next) => {
+    res.send(req.user);
+});
 
 app.post('/auth/register', async (req, res) => {
     const { username, email, password } = req.body;
@@ -65,9 +78,11 @@ app.post('/auth/register', async (req, res) => {
     })
 })
 
-// app.get('/user', (req, res) => {
-//     console.log(req.body);
-// })
+app.get('/auth/getUser', (req, res) => {
+    res.send(req.user);
+})
+
+// Server Setup ----------------------------------------------------------
 
 const PORT = process.env.port || 4000;
 app.listen(PORT, () => {

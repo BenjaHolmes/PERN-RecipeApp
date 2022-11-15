@@ -16,24 +16,19 @@ export const registerUser = createAsyncThunk(
 export const logInUser = createAsyncThunk(
     'auth/logIn',
     async (authData) => {
-        try {
-            const data = {
-                username: authData.username,
-                password: authData.password
-            }
-            const response = await fetch("http://localhost:4000/auth/login", {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            
-        
-    } catch (err) {
-        throw Error(err);
-    }
+        const response = axios.post("http://localhost:4000/auth/login", {
+            username: authData.username,
+            password: authData.password
+        });
+        return (await response).data;
+        }
+)
+
+export const getUser = createAsyncThunk(
+    'auth/getUser',
+    async () => {
+        const response = axios.get("http://localhost:4000/auth/getUser");
+        return (await response).data;
     }
 )
 
@@ -95,6 +90,20 @@ const authSlice = createSlice({
             state.loading = false;
         },
         [logInUser.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
+        }, 
+        [getUser.pending]: (state, action) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [getUser.fulfilled]: (state, action) => {
+            state.isAuthorised = true;
+            state.user2 = action.payload;
+            state.gotUser = true;
+            state.loading = false;
+        },
+        [getUser.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
         }
