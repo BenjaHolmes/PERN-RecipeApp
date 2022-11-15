@@ -21,7 +21,7 @@ const AuthPage = () => {
         const data = {
             username: registerUsername,
             email: registerEmail,
-            password: registerPassword
+            password: registerPassword  
         }
         dispatch(registerUser(data))
     };

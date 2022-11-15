@@ -11,8 +11,8 @@ const LogInMenu = (props) => {
                 <div className='loginContainer'> 
                     <p onClick={props.logToggle}> X </p>
                     <button className='topBtn' onClick={()=>navigate('/auth')} > Log In </button>
-                    <button> Register </button>
-                    <button> Your Account </button>
+                    <button onClick={()=>navigate('/auth')}> Register </button>
+                    <button onClick={()=>navigate('/auth')}> Your Account </button>
                 </div>
             </div>
         </OutsideClickHandler>

@@ -10,7 +10,7 @@ export const registerUser = createAsyncThunk(
                 email: authData.email,
                 password: authData.password
             }
-            const response = await fetch("localhost:4000/auth/register", {
+            const response = await fetch("http://localhost:4000/auth/register", {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

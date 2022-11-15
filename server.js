@@ -4,17 +4,15 @@ const express = require('express');
 // const passport = require('passport');
 // const passportLocal = require('passport-local').Strategy;
 // const cookieParser = require('cookie-parser');
-// const bodyParser = require('body-parser');
+
 // const bcrypt = require('bcryptjs');
 // const session = require('express-session');
 const app = express();
 
 // // Middleware
 
-// Creates a new body object containing the data parsed on request object (req.body)
-// app.use(bodyParser.json);
-// app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.json);
+// Turns incoming data into JSON, replacement for body-parser
+app.use(express.json());
 
 // Cors allows us to connect to our React App
 app.use(cors({
@@ -45,10 +43,10 @@ app.get('/', (req, res) => {
 //     console.log(req.body);
 // })
 
-// app.post('/auth/register', (req, res) => {
-//     console.log(req.body);
-//     res.send(req.body);
-// })
+app.post('/auth/register', (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
+})
 
 // app.get('/user', (req, res) => {
 //     console.log(req.body);
