@@ -4,7 +4,7 @@ import { setLogInUsername, setLogInPassword,
     setRegisterUsername, setRegisterEmail, setRegisterPassword,
     logInUsernameSelector, logInPasswordSelector,
     registerUsernameSelector, registerEmailSelector, registerPasswordSelector,
-    registerUser
+    registerUser, logInUser
 } from '../../slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,8 +14,14 @@ const AuthPage = () => {
     const registerUsername = useSelector(registerUsernameSelector);
     const registerEmail = useSelector(registerEmailSelector);
     const registerPassword = useSelector(registerPasswordSelector);
+    const logInUsername = useSelector(logInUsernameSelector);
+    const logInPassword = useSelector(logInPasswordSelector);
     const handleLogIn = () => {
-
+        const data = {
+            username: logInUsername,
+            password: logInPassword  
+        }
+        dispatch(logInUser(data))
     }
     const handleRegister = () => {
         const data = {

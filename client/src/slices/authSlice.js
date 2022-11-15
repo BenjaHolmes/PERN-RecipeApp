@@ -1,16 +1,27 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
+import axios from 'axios';
 
 export const registerUser = createAsyncThunk(
-    'auth/register',
+    "auth/register",
+    async (authData) => {
+        const response = axios.post("http://localhost:4000/auth/register", {
+            username: authData.username,
+            email: authData.email,
+            password: authData.password
+        });
+        return (await response).data;
+    }
+)
+
+export const logInUser = createAsyncThunk(
+    'auth/logIn',
     async (authData) => {
         try {
             const data = {
                 username: authData.username,
-                email: authData.email,
                 password: authData.password
             }
-            const response = await fetch("http://localhost:4000/auth/register", {
+            const response = await fetch("http://localhost:4000/auth/login", {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -18,7 +29,7 @@ export const registerUser = createAsyncThunk(
                 },
                 body: JSON.stringify(data)
             });
-            return response.json();
+            
         
     } catch (err) {
         throw Error(err);
@@ -36,7 +47,7 @@ const initialState = {
     user: {},
     loading: false,
     error: null
-}
+};
 
 const authSlice = createSlice({
     name: 'auth',
@@ -65,9 +76,25 @@ const authSlice = createSlice({
         [registerUser.fulfilled]: (state, action) => {
             state.isAuthorised = true;
             state.user = action.payload;
+            state.registerEmail = '';
+            state.registerUsername = '';
+            state.registerPassword = '';
             state.loading = false;
         },
         [registerUser.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
+        }, 
+        [logInUser.pending]: (state, action) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [logInUser.fulfilled]: (state, action) => {
+            state.isAuthorised = true;
+            state.user = action.payload;
+            state.loading = false;
+        },
+        [logInUser.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
         }

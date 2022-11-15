@@ -1,11 +1,12 @@
 // const mongoose = require('mongoose');
 const cors = require('cors');
 const express = require('express');
+const pool = require('./db');
 // const passport = require('passport');
 // const passportLocal = require('passport-local').Strategy;
 // const cookieParser = require('cookie-parser');
 
-// const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 // const session = require('express-session');
 const app = express();
 
@@ -38,14 +39,30 @@ app.get('/', (req, res) => {
     res.send('server working');
 })
 
-// //Routes
-// app.post('/login', (req, res) => {
-//     console.log(req.body);
-// })
-
-app.post('/auth/register', (req, res) => {
+//Routes
+app.post('/auth/login', (req, res) => {
     console.log(req.body);
-    res.send(req.body);
+})
+
+app.post('/auth/register', async (req, res) => {
+    const { username, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    //Check if Email already exists
+    pool.query( "SELECT u FROM users u WHERE u.email = $1", [email],
+     (error, results) => {
+        if (results.rows.length) {
+            res.send("An Account with this Info already exists");
+        }
+    pool.query("INSERT INTO users (username, email, password) VALUES ($1, $2, $3)",
+    [username, email, hashedPassword],
+        (error, results) => {
+            if (error) throw error;
+            res.send({
+                username: username,
+                email: email
+            });
+        })
+    })
 })
 
 // app.get('/user', (req, res) => {
