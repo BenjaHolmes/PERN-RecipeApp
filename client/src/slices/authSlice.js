@@ -8,7 +8,7 @@ export const registerUser = createAsyncThunk(
             username: authData.username,
             email: authData.email,
             password: authData.password
-        });
+        }, { withCredentials: true });
         return (await response).data;
     }
 )
@@ -19,15 +19,25 @@ export const logInUser = createAsyncThunk(
         const response = axios.post("http://localhost:4000/auth/login", {
             username: authData.username,
             password: authData.password
-        });
+        }, { withCredentials: true });
         return (await response).data;
         }
+)
+
+export const logOutUser = createAsyncThunk(
+    'auth/logout',
+    async () => {
+        const response = axios.get("http://localhost:4000/auth/logout", 
+        { withCredentials: true });
+        return (await response).data;
+    }
 )
 
 export const getUser = createAsyncThunk(
     'auth/getUser',
     async () => {
-        const response = axios.get("http://localhost:4000/auth/getUser");
+        const response = axios.get("http://localhost:4000/auth/getUser", 
+        { withCredentials: true });
         return (await response).data;
     }
 )
@@ -99,11 +109,23 @@ const authSlice = createSlice({
         },
         [getUser.fulfilled]: (state, action) => {
             state.isAuthorised = true;
-            state.user2 = action.payload;
-            state.gotUser = true;
+            state.user = action.payload;
             state.loading = false;
         },
         [getUser.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
+        }, 
+        [logOutUser.pending]: (state, action) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [logOutUser.fulfilled]: (state, action) => {
+            state.isAuthorised = false;
+            state.user = action.payload;
+            state.loading = false;
+        },
+        [logOutUser.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
         }
@@ -118,6 +140,8 @@ export const {
     setRegisterPassword
 } = authSlice.actions;
 
+export const userIDSelector = state => state.auth.user.id;
+export const usernameSelector = state => state.auth.user.username;
 export const logInUsernameSelector = state => state.auth.logInUsername;
 export const logInPasswordSelector = state => state.auth.logInPassword;
 export const registerUsernameSelector = state => state.auth.registerUsername;

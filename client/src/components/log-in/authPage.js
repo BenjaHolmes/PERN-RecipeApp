@@ -4,11 +4,11 @@ import { setLogInUsername, setLogInPassword,
     setRegisterUsername, setRegisterEmail, setRegisterPassword,
     logInUsernameSelector, logInPasswordSelector,
     registerUsernameSelector, registerEmailSelector, registerPasswordSelector,
-    registerUser, logInUser, getUser
+    registerUser, logInUser, getUser, usernameSelector, userIDSelector
 } from '../../slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
-
-
+import MemberArea from '../memberArea/memberArea';
+import { useEffect } from 'react';
 
 const AuthPage = () => {
     const dispatch = useDispatch();
@@ -17,6 +17,7 @@ const AuthPage = () => {
     const registerPassword = useSelector(registerPasswordSelector);
     const logInUsername = useSelector(logInUsernameSelector);
     const logInPassword = useSelector(logInPasswordSelector);
+    const username = useSelector(usernameSelector);
     const handleLogIn = () => {
         const data = {
             username: logInUsername,
@@ -36,8 +37,13 @@ const AuthPage = () => {
     const handleGetUser = () => {
         dispatch(getUser());
     }
+    // Checks if the user is logged in on page load so correct content loads
+    useEffect(() => {
+        dispatch(getUser());
+    })
     return (
         <div>
+            { username != null ? <MemberArea /> :
             <div className='authBox'>
                 <div className='logIn'>
                     <h2> Log In </h2>
@@ -58,6 +64,7 @@ const AuthPage = () => {
                     <button onClick={handleRegister}> Submit </button>
                 </div>
             </div>
+}
             <div className='accountBox'>
                 <h3> Get User</h3>
                 <button onClick={handleGetUser}> Submit </button>

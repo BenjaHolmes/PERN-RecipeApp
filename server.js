@@ -7,27 +7,37 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const app = express();
 
 // Middleware ------------------------------------------------------------
 
-// Turns incoming data into JSON, replacement for body-parser
+// Turns incoming data into JSON
+
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}))
 
 // Cors allows us to connect to our React App
+
 app.use(cors({
     origin: 'http://localhost:3000',
-    credentials: true
-}))
+    credentials: true,
+    preflightContinue: true
+}));
 
 // Creates our session to store id in cookie
+const store = new session.MemoryStore();
 app.use(session({
     secret: 'secret',
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24
-    }
+        sameSite: false,
+        secure: false,
+        maxAge: 300000000
+    },
+    store
 }));
 
 // Passport Config --------------------------------------------------------
@@ -80,6 +90,13 @@ app.post('/auth/register', async (req, res) => {
 
 app.get('/auth/getUser', (req, res) => {
     res.send(req.user);
+    console.log(req.user);
+});
+
+app.get('/auth/logout', (req, res) => {
+    req.logOut(() => {
+        res.send({});
+    })
 })
 
 // Server Setup ----------------------------------------------------------

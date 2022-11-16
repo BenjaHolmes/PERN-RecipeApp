@@ -1,0 +1,94 @@
+.memberContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+}
+.welcomeBox {
+    display: flex;
+    width: 100%;
+    background-color: aliceblue;
+    justify-content: space-between;
+}
+#Light .welcomeBox h1 {
+    margin: 15px;
+    letter-spacing: 3px;
+    color:#5DAA68;
+}
+#Dark .welcomeBox h1 {
+    color:#203b24;
+    letter-spacing: 3px;
+    margin: 15px;
+}
+#Light .welcomeBox button {
+    margin: 15px;
+    width: 95px;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 1px;
+    background-color: #FAF1CF;
+    border: 2px solid #203b24;
+}
+#Dark .welcomeBox button {
+    margin: 15px;
+    width: 95px;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 1px;
+    background-color: #FAF1CF;
+    border: 2px solid #5DAA68 ;
+}
+.statisticsBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    min-height: 400px;
+    background-color: aliceblue;
+}
+#Light .memberContainer h3 {
+    margin: 15px;
+    color:#5DAA68;
+    text-decoration: underline;
+}
+#Dark .memberContainer h3 {
+    margin: 15px;
+    color: #203b24;
+    text-decoration: underline;
+}
+.previousRecipesBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    width: 50%;
+    height: 100%;
+}
+.prevRecipe {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px dotted #5DAA68;
+}
+.deleteText {
+    color: red;
+}
+.likeBox {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.likeBox img {
+    height: 155px;
+    width: 155px;
+    border: 1px solid #5DAA68;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: #5DAA68;
+}
