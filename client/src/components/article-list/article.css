@@ -14,3 +14,39 @@
     flex-grow: 2;
     margin-left: 1px solid #5DAA68;
 }
+#Dark .articleCard {
+    width: 100%;
+    height: 100px;
+    border-bottom: 3px solid #5DAA68;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+#Light .articleCard {
+    width: 100%;
+    height: 100px;
+    border-bottom: 3px solid #3F6844;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.title {
+    font-weight: bold;
+    font-size: 1rem;
+    width: 95%;
+    position: absolute;
+    top: -12px;
+    left: 10px;
+}
+.subheading {
+    font-size: 0.75rem;
+    position: absolute;
+    left: 10px;
+    bottom: -10px;
+}
+#Light .articleCard p {
+    color: #000000;
+}
+#Dark .articleCard p {
+    color: #FAF1CF;
+}

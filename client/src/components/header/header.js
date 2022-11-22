@@ -37,10 +37,7 @@ export default function Header() {
         <div className='left-side'>
             <img src={logo} className='logo' onClick={()=>navigate('/')} 
                 alt='The Sites Logo of an Apple, Knife and Fork' />
-               
             <h1> Meal Share App </h1>
-            <h4> Discover a Recipe, or Share Your Own! </h4>
-            
         </div>
         <div className='right-side'>
             {/* Animate Prescene is Required to animate the exit of the motion.div before it is removed from the DOM */}
@@ -50,7 +47,7 @@ export default function Header() {
                 transition={{type: 'tween', duration: .65}} key='menuBar'
                 exit={{opacity: 0}} className='menu-buttons'>
                     <img src={HomePage} onClick={()=>navigate('/')} alt='Press for Home Page' />
-                    <img src={Info} alt='Press for Info Page'/>
+                    <img src={Info} onClick={()=>navigate('/info')} alt='Press for Info Page'/>
                     <img src={Account} onClick={accountClicked} alt='Press for Account Page'/>
                     <img src={Switch} onClick={themeClicked} alt='Press to Switch between Light and Dark Mode'/>
                 </motion.div>

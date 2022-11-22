@@ -11,6 +11,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 999;
+
 }
 #Light .loginContainer {
     border: 1px solid #3F6844;
@@ -25,6 +27,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 999;
 }
 .loginContainer button {
     width: 80%;
