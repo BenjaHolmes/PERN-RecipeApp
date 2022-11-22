@@ -2,7 +2,6 @@ import React from 'react'
 import './header.css'
 import logo from './logo1.png';
 import Menu from './menuIcons/menuIcon.png';
-import Cart from './menuIcons/cartIcon.png';
 import Switch from './menuIcons/switchIcon.png';
 import Account from './menuIcons/accountIcon.png';
 import Info from './menuIcons/infoIcon.png';
@@ -38,7 +37,10 @@ export default function Header() {
         <div className='left-side'>
             <img src={logo} className='logo' onClick={()=>navigate('/')} 
                 alt='The Sites Logo of an Apple, Knife and Fork' />
-            <h1> Midweek Meal Planner </h1>
+               
+            <h1> Meal Share App </h1>
+            <h4> Discover a Recipe, or Share Your Own! </h4>
+            
         </div>
         <div className='right-side'>
             {/* Animate Prescene is Required to animate the exit of the motion.div before it is removed from the DOM */}
@@ -49,7 +51,6 @@ export default function Header() {
                 exit={{opacity: 0}} className='menu-buttons'>
                     <img src={HomePage} onClick={()=>navigate('/')} alt='Press for Home Page' />
                     <img src={Info} alt='Press for Info Page'/>
-                    <img src={Cart} alt='Press for Shopping List Generation Page'/>
                     <img src={Account} onClick={accountClicked} alt='Press for Account Page'/>
                     <img src={Switch} onClick={themeClicked} alt='Press to Switch between Light and Dark Mode'/>
                 </motion.div>

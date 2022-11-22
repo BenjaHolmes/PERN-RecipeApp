@@ -4,7 +4,7 @@ import { setLogInUsername, setLogInPassword,
     setRegisterUsername, setRegisterEmail, setRegisterPassword,
     logInUsernameSelector, logInPasswordSelector,
     registerUsernameSelector, registerEmailSelector, registerPasswordSelector,
-    registerUser, logInUser, getUser, usernameSelector, userIDSelector
+    registerUser, logInUser, getUser, usernameSelector
 } from '../../slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import MemberArea from '../memberArea/memberArea';

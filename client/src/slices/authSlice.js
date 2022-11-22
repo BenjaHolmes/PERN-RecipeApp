@@ -108,7 +108,6 @@ const authSlice = createSlice({
             state.error = null;
         },
         [getUser.fulfilled]: (state, action) => {
-            state.isAuthorised = true;
             state.user = action.payload;
             state.loading = false;
         },
@@ -122,7 +121,7 @@ const authSlice = createSlice({
         },
         [logOutUser.fulfilled]: (state, action) => {
             state.isAuthorised = false;
-            state.user = action.payload;
+            state.user = {};
             state.loading = false;
         },
         [logOutUser.rejected]: (state, action) => {

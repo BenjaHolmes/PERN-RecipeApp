@@ -31,13 +31,13 @@ const MemberArea = () => {
                 </div>
                 <div className='likeBox'>
                     <h3> Your Recipes Have 0 Likes </h3>
-                    <img src={like} />
+                    <img src={like} alt='A Thumbs Up Icon for Likes' />
                     <h3> Your Recipes Have 0 Dislikes </h3>
-                    <img src={dislike} />
+                    <img src={dislike} alt='A Thumbs Down Icon for Dislikes'/>
                 </div>
             </div>
-            <div className='RecipeBuildBox'>
-                <p> Recipe Build Box </p>
+            <div className='recipeBuildBox'>
+                <h2> Create a New Recipe </h2>
             </div>
         </div>
     );

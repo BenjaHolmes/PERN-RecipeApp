@@ -10,6 +10,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
+const recipeRoutes = require('./routes/recipeRoutes');
 
 // Middleware ------------------------------------------------------------
 
@@ -39,8 +40,6 @@ app.use(session({
     },
     store
 }));
-
-// Passport Config --------------------------------------------------------
 
 require('./config/passportConfig');
 // Reloads passport each time user navigates to new route to check for session expiration etc
@@ -93,11 +92,17 @@ app.get('/auth/getUser', (req, res) => {
     console.log(req.user);
 });
 
+//LogOut Not Working
 app.get('/auth/logout', (req, res) => {
     req.logOut(() => {
         res.send({});
     })
 })
+
+// Route Handlers --------------------------------------------------------
+app.use('/recipes', recipeRoutes);
+
+
 
 // Server Setup ----------------------------------------------------------
 

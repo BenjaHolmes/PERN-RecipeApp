@@ -50,6 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: aliceblue;
 }
 .authBox div {
     width: 50%;
