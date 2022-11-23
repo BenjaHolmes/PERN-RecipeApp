@@ -4,13 +4,14 @@ import Tick from './RecipeIcons/tick.png';
 import './recipe.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes, searchParameterSelector, setSearchParameter } from '../../slices/recipesSlice';
+import { getRecipes, searchParameterSelector, setSearchParameter, recipesSelector } from '../../slices/recipesSlice';
 
 const RecipeList = () => {
     const dispatch = useDispatch();
     const searchParameter = useSelector(searchParameterSelector);
+    const recipes = useSelector(recipesSelector);
     useEffect(() => {
-        dispatch(getRecipes);
+        dispatch(getRecipes());
     }, [dispatch])
     
     return (
@@ -54,14 +55,10 @@ const RecipeList = () => {
                 </div>
             </div>
             <main className='recipeCardHolder'>
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
-                <RecipeCard />
+                { recipes != null ? recipes.map((data, index) => 
+                <RecipeCard key={index} name={data.name} numLikes={data.number_of_likes}
+                numDislikes={data.number_of_dislikes} id={data.id} picId={data.picture_id} />) 
+                : ''}
             </main>
         </div>
     );

@@ -1,6 +1,6 @@
 #Dark .loginContainer {
     border: 1px solid #3F6844;
-    background-color: #203b24;;
+    background-color: #3F6844;
     position: absolute;
     width: 150px;
     height: 170px;
@@ -79,7 +79,7 @@
     align-items: center;
     flex-direction: column;
     height: 80%;
-    border: 2px solid #203b24;
+    border: 2px solid #3F6844;
     background-color: #5DAA68;
     margin: 35px;
 }
@@ -90,7 +90,7 @@
     flex-direction: column;
     height: 80%;
     border: 2px solid #5DAA68 ;
-    background-color: #203b24;
+    background-color: #3F6844;
     margin: 35px;
 }
 #Light .register {
@@ -99,7 +99,7 @@
     align-items: center;
     flex-direction: column;
     height: 80%;
-    border: 2px solid #203b24;
+    border: 2px solid #3F6844;
     background-color: #5DAA68;
     margin: 35px;
 }
@@ -110,7 +110,7 @@
     flex-direction: column;
     height: 80%;
     border: 2px solid #5DAA68 ;
-    background-color: #203b24;
+    background-color: #3F6844;
     margin: 35px;
 }
 #Light .authBox h2 {

@@ -1,12 +1,16 @@
 import React from 'react';
-import img1 from './RecipeImgs/01.jpg';
 
-const RecipeCard = () => {
+const RecipeCard = (props) => {
+    const imgPath = `/RecipeImgs/${props.picId}.jpg`;
+    const placeholderImg = '/RecipeImgs/placeholder.jpg';
     return (
         <div className='cardBox'>
-            <img className='cardImg' src={img1} alt='Image of Food'/>
+            { props.picId === null ? 
+            <img className='cardImg' src={placeholderImg} alt='Placeholder Food Pic'/> :
+            <img className='cardImg' src={imgPath} alt='Food Pic'/>
+            }
             <div className='cardData'>
-                <p className='recipeTitle'> Spaghetti Bolognese </p>
+                <p className='recipeTitle'> {props.name} </p>
             </div>
         </div>
     );

@@ -47,12 +47,12 @@ app.use(passport.initialize());
 // Allows passport to use session object for authentication
 app.use(passport.session());
 
-// Middleware to check if passport and session are working
-app.use((req, res, next) => {
-    console.log(req.session);
-    console.log(req.user);
-    next();
-});
+// // Middleware to check if passport and session are working
+// app.use((req, res, next) => {
+//     console.log(req.session);
+//     console.log(req.user);
+//     next();
+// });
 
 
 // Routes ----------------------------------------------------------------

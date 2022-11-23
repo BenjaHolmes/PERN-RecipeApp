@@ -9,6 +9,7 @@ CREATE TABLE users (
   name VARCHAR(100),
   number_of_likes INTEGER,
   number_of_dislikes INTEGER,
+  picture_id INTEGER,
   created_by_user BIGSERIAL REFERENCES users(id)
  );
  CREATE TABLE recipe_steps (
