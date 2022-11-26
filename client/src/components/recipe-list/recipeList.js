@@ -11,6 +11,8 @@ const RecipeList = () => {
     const searchParameter = useSelector(searchParameterSelector);
     const recipes = useSelector(recipesSelector);
     useEffect(() => {
+        // Refreshes Search Parameter when user reloads page
+        dispatch(setSearchParameter('All Recipes'));
         dispatch(getRecipes());
     }, [dispatch])
     

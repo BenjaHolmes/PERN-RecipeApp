@@ -39,13 +39,6 @@
     background-color: #FAF1CF;
     border: 2px solid #5DAA68 ;
 }
-.statisticsBox {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    min-height: 400px;
-    background-color: aliceblue;
-}
 #Light .memberContainer h3 {
     margin: 15px;
     color:#5DAA68;
@@ -56,42 +49,6 @@
     color: #203b24;
     text-decoration: underline;
 }
-.previousRecipesBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 30px;
-    width: 50%;
-    height: 100%;
-}
-.prevRecipe {
-    width: 100%;
-    height: 50px;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    border: 1px dotted #5DAA68;
-}
-.deleteText {
-    color: red;
-}
-.likeBox {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
-.likeBox img {
-    height: 155px;
-    width: 155px;
-    border: 1px solid #5DAA68;
-    border-radius: 50%;
-    padding: 10px;
-    background-color: #5DAA68;
-}
 .recipeBuildBox {
     width: 100%;
     height: 100%;
@@ -101,4 +58,59 @@
     margin: 15px;
     color:#5DAA68;
     text-decoration: underline;
+}
+.statisticsBox {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+    min-height: 500px;
+    background-color: aliceblue;
+}
+.previousRecipesBox {
+    height: 100%;
+    width: 70%;
+}
+.likeStats {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 25%;
+    border: 1px solid black;
+}
+.likeStats img {
+    height: 40px;
+    width: 40px;
+}
+.prevRecipe {
+    width: 100%;
+    height: 60px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+    border: 1px dotted #5DAA68;
+    align-items: center;
+}
+.deleteText {
+    color: red;
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+} 
+.deletePopup {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px dotted #5DAA68;
+    background-color: #df9898;
+    width: 75%;
+    margin-left:auto;
+    margin-right: auto;
+}
+.rightPopup button {
+    width: 60px;
+    padding: 5px;
+    margin: 5px;
 }

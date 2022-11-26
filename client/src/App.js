@@ -12,6 +12,7 @@ import './index.css'
 import MainPage from './components/mainPage/mainPage';
 import AuthPage from './components/log-in/authPage';
 import InfoPage from './components/infoPage/infoPage';
+import RecipeDetailsPage from './components/recipeDetailsPage/recipeDetailsPage';
 
 export default function App() {
   const theme = useSelector(themeSelector);
@@ -21,7 +22,8 @@ export default function App() {
           <Routes>
             <Route path='/' element={<> <Header /> <MainPage /> <Footer /> </>} />
             <Route path='/auth' element={<> <Header /> <AuthPage /> </>} />
-            <Route path='/info' element={ <> <Header /> <InfoPage /> <Footer /> </>} />      
+            <Route path='/info' element={ <> <Header /> <InfoPage /> <Footer /> </>} />  
+            <Route path='/recipes/:id' element={ <> <Header /> <RecipeDetailsPage/> <Footer /> </>} />     
           </Routes>
         </BrowserRouter>
     </div>

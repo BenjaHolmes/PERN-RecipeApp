@@ -7,13 +7,22 @@ export const getRecipes = createAsyncThunk(
         const response = await axios.get("http://localhost:4000/recipes/all");
         return response.data;
     }
+);
+
+export const getRecipeById = createAsyncThunk(
+    'recipes/getRecipeById',
+    async (id) => {
+        const response = await axios.get(`http://localhost:4000/recipes/${id}`);
+        return response.data;
+    }
 )
 
  const initialState = {
     recipes: [],
-    // Think i will need a second state for sorted recipes to
-    // make the Sortby Bar work without deleting all recipes
+    // Second Recipe State holds the sorted list, so that we maintain the full list in the first piece of state.
     recipesToSort: [],
+    chosenRecipeId: 0,
+    chosenRecipe: [],
     loading: false,
     error: null,
     searchParameter: 'All Recipes'
@@ -55,8 +64,10 @@ const recipesSlice = createSlice({
                     break;
                 default:
                     state.recipesToSort = [...state.recipes];
-
-            }
+            };
+        },
+        setChosenRecipe(state, action) {
+            state.chosenRecipeId = action.payload;
         }
     }, extraReducers: {
         [getRecipes.pending]: (state) => {
@@ -71,12 +82,26 @@ const recipesSlice = createSlice({
         [getRecipes.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
+        }, 
+        [getRecipeById.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [getRecipeById.fulfilled]: (state, action) => {
+            state.chosenRecipe = action.payload;
+            state.loading = false;
+        },
+        [getRecipeById.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
         }
     }
 });
 
-export const { setRecipes, setSearchParameter } = recipesSlice.actions;
+export const { setRecipes, setSearchParameter, setChosenRecipe } = recipesSlice.actions;
 export const recipesSelector = state => state.recipes.recipesToSort;
 export const searchParameterSelector = state => state.recipes.searchParameter;
+export const chosenRecipeSelector = state => state.recipes.chosenRecipeId;
+export const chosenRecipeInfoSelector = state => state.recipes.chosenRecipe;
 
 export default recipesSlice.reducer;

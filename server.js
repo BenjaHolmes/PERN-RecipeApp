@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
 const recipeRoutes = require('./routes/recipeRoutes');
+const memberAreaRoutes = require('./routes/memberAreaRoutes');
 
 // Middleware ------------------------------------------------------------
 
@@ -92,7 +93,7 @@ app.get('/auth/getUser', (req, res) => {
     console.log(req.user);
 });
 
-//LogOut Not Working
+//LogOut 
 app.get('/auth/logout', (req, res) => {
     req.logOut(() => {
         res.send({});
@@ -101,7 +102,7 @@ app.get('/auth/logout', (req, res) => {
 
 // Route Handlers --------------------------------------------------------
 app.use('/recipes', recipeRoutes);
-
+app.use('/members', memberAreaRoutes);
 
 
 // Server Setup ----------------------------------------------------------

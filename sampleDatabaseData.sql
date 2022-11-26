@@ -20,10 +20,6 @@ VALUES ('Vegan Minestrone', 1, 800, 4, 9)
 INSERT INTO recipes (name, number_of_likes, number_of_dislikes, created_by_user, picture_id)
 VALUES ('Pork Stir Fry', 89, 35, 4, 10)
 
-
-
-
-
 -- Ingredients
 INSERT INTO ingredients (name)
 VALUES ('Minced Beef'), ('Tinned Tomatoes'), ('Spaghetti'), ('Onion'), ('Garlic'), 
@@ -119,7 +115,6 @@ VALUES (6, false, true, false, true, false);
 INSERT INTO allergy_info (recipe_id, contains_meat, contains_fish, 
 contains_alcohol, contains_gluten, is_vegan)
 VALUES (7, false, true, false, true, false);
-
 INSERT INTO allergy_info (recipe_id, contains_meat, contains_fish, 
 contains_alcohol, contains_gluten, is_vegan)
 VALUES (8, false, false, true, false, false);
@@ -237,3 +232,19 @@ JOIN allergy_info ON
 allergy_info.recipe_id = recipes.id
 JOIN recipe_steps ON
 recipe_steps.recipe_id = recipes.id;
+
+-- Get 1 Recipes' data, allergens and steps.
+SELECT * FROM recipes 
+JOIN allergy_info ON
+allergy_info.recipe_id = recipes.id
+JOIN recipe_steps ON
+recipe_steps.recipe_id = recipes.id
+WHERE recipes.id = 1;
+
+-- Get the Ingredients and amounts of one recipe.
+SELECT * FROM recipes 
+JOIN recipe_ingredients ON
+recipes.id = recipe_ingredients.recipe_id
+JOIN ingredients ON
+recipe_ingredients.ingredient_id = ingredients.id
+WHERE recipes.id = 1;

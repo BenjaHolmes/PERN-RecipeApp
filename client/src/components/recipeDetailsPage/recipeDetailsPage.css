@@ -1,0 +1,83 @@
+.recipeInfoBox {
+    min-height: 1200px;
+    background-color: aliceblue;
+    
+}
+.topInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.topInfo img {
+    width: 50%;
+    height: 50%;
+    border: 3px solid #3F6844;
+}
+.ingredientInfo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.ingredientList {
+    width: 40%;
+    min-height: 500px;
+    border: 3px solid #3F6844;
+}
+.methodInfo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.methodList {
+    width: 60%;
+    min-height: 500px;
+    border: 3px solid #3F6844;
+}
+.likeBox {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.likeBox img {
+    height: 40px;
+    width: 40px;
+    margin-left: 55px;
+    margin-right: 55px;
+    margin-top: 20px;
+}
+.likes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dislikes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.num {
+    margin-top: -15px
+}
+
+.commentInfo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.commentList {
+    width: 60%;
+    min-height: 500px;
+    border: 3px solid #3F6844;
+}
