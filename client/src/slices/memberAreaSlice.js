@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 export const getMembersRecipes = createAsyncThunk(
     'memberArea/getMembersRecipes',
@@ -13,6 +14,8 @@ export const deleteMembersRecipe = createAsyncThunk(
     'memberArea/deleteMembersRecipe',
     async (id) => {
         const response = await axios.delete(`http://localhost:4000/members/${id}`);
+        const dispatch = useDispatch();
+        dispatch(getMembersRecipes);
         return response.data;
     }
 )
@@ -56,7 +59,7 @@ const memberAreaSlice = createSlice({
             state.error = null;
         },
         [deleteMembersRecipe.fulfilled]: (state, action) => {
-            state.lastDeletedRecipe = action.payload;            
+            state.idForDeletion = '';           
             state.loading = false;
         },
         [deleteMembersRecipe.rejected]: (state, action) => {

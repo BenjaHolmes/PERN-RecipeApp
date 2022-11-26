@@ -18,11 +18,7 @@ const deleteMembersRecipes = async (req, res) => {
     const recipeId = req.params.id;
     pool.query(`DELETE FROM recipes WHERE id = $1`, [recipeId],
     (error, results) => {
-        if (!results.rows.length) {
-            res.send("This Recipe was not deleted");
-        } else if (error) {
-            throw error;
-        }
+        if (error) throw error;
         res.send('Recipe Deleted');
     })
 };

@@ -126,7 +126,7 @@ contains_alcohol, contains_gluten, is_vegan)
 VALUES (10, true, false, false, false, false);
 
 -- Recipe Steps
-INSERT INTO recipe_steps (recipe_id, step_1, step_2, step_3, step_4, step_5, step_6, step_7
+INSERT INTO recipe_steps (recipe_id, step_1, step_2, step_3, step_4, step_5, step_6, step_7,
 step_8, step_9, step_10)
 VALUES (1, 'Sauté the Onions and Garlic until translucent.',
  'Add the Beef and cook until browned.',
@@ -135,7 +135,7 @@ VALUES (1, 'Sauté the Onions and Garlic until translucent.',
  'Serve after adding Salt and Pepper.', 
  '', '', '', '', '');
 
-INSERT INTO recipe_steps (recipe_id, step_1, step_2, step_3, step_4, step_5, step_6, step_7
+INSERT INTO recipe_steps (recipe_id, step_1, step_2, step_3, step_4, step_5, step_6, step_7,
 step_8, step_9, step_10)
 (2, 'Chop Romaine and add to a large bowl.', 
 'Top the romaine with onion, chickpeas, tomatoes and mozzarella', 
@@ -248,3 +248,16 @@ recipes.id = recipe_ingredients.recipe_id
 JOIN ingredients ON
 recipe_ingredients.ingredient_id = ingredients.id
 WHERE recipes.id = 1;
+
+--Adding On Delete Cascade
+ALTER TABLE recipe_steps
+ADD constraint "recipe_steps_recipe_id_fkey"
+FOREIGN KEY (recipe_id)
+REFERENCES recipes(id)
+ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE allergy_info
+ADD constraint "allergy_info_recipe_id_fkey"
+FOREIGN KEY (recipe_id)
+REFERENCES recipes(id)
+ON DELETE CASCADE ON UPDATE NO ACTION;

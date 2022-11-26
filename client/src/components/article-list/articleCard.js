@@ -5,8 +5,8 @@ const ArticleCard = () => {
     return (
         <div>
             <div className='articleCard'>
-                <p className='title'> An Introduction to the Glycemic Index </p>
-                <p className='subheading'> Not as Straight Forward as You'd Think. </p>
+                <p className='title'> Article Header </p>
+                <p className='subheading'> Article Sub-Heading </p>
             </div>
             <div className='articleImgHolder'>
                 
