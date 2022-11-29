@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 
 export const getMembersRecipes = createAsyncThunk(
     'memberArea/getMembersRecipes',
@@ -14,8 +13,6 @@ export const deleteMembersRecipe = createAsyncThunk(
     'memberArea/deleteMembersRecipe',
     async (id) => {
         const response = await axios.delete(`http://localhost:4000/members/${id}`);
-        const dispatch = useDispatch();
-        dispatch(getMembersRecipes);
         return response.data;
     }
 )
@@ -23,6 +20,7 @@ export const deleteMembersRecipe = createAsyncThunk(
 const initialState = {
     idForDeletion: '',
     membersRecipes: [],
+    formPage: 1,
     recipeToAdd:  {
         name: '',
         fish: false,
@@ -41,6 +39,12 @@ const memberAreaSlice = createSlice({
     reducers: {
         setItemForDeletion(state, action) {
             state.idForDeletion = action.payload;
+        },
+        incrementFormPage(state) {
+            state.formPage++
+        },
+        decrementFormPage(state) {
+            state.formPage--
         }
     }, extraReducers: {
         [getMembersRecipes.pending]: (state) => {
@@ -58,8 +62,11 @@ const memberAreaSlice = createSlice({
             state.loading = true;
             state.error = null;
         },
-        [deleteMembersRecipe.fulfilled]: (state, action) => {
-            state.idForDeletion = '';           
+        [deleteMembersRecipe.fulfilled]: (state) => {
+            let filteredMembersRecipes = state.membersRecipes.filter(
+                recipe => recipe.id !== state.idForDeletion);
+            state.membersRecipes = filteredMembersRecipes;
+            state.idForDeletion = null;          
             state.loading = false;
         },
         [deleteMembersRecipe.rejected]: (state, action) => {
@@ -69,8 +76,10 @@ const memberAreaSlice = createSlice({
     }
 });
 
-export const { togglePopup, setItemForDeletion } = memberAreaSlice.actions;
+export const { togglePopup, 
+    setItemForDeletion, incrementFormPage, decrementFormPage } = memberAreaSlice.actions;
 export const membersRecipesSelector = state => state.memberArea.membersRecipes;
 export const idForDeletionSelector = state => state.memberArea.idForDeletion;
+export const formPageSelector = state => state.memberArea.formPage;
 
 export default memberAreaSlice.reducer;

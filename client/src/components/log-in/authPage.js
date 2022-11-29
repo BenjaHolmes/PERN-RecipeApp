@@ -65,10 +65,7 @@ const AuthPage = () => {
                 </div>
             </div>
 }
-            <div className='accountBox'>
-                <h3> Get User</h3>
-                <button onClick={handleGetUser}> Submit </button>
-            </div>
+            
         </div>
     );
 }

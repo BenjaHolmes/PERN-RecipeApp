@@ -21,7 +21,7 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<> <Header /> <MainPage /> <Footer /> </>} />
-            <Route path='/auth' element={<> <Header /> <AuthPage /> </>} />
+            <Route path='/auth' element={<> <Header /> <AuthPage /> <Footer /> </>} />
             <Route path='/info' element={ <> <Header /> <InfoPage /> <Footer /> </>} />  
             <Route path='/recipes/:id' element={ <> <Header /> <RecipeDetailsPage/> <Footer /> </>} />     
           </Routes>

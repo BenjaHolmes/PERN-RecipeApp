@@ -8,6 +8,7 @@ import like from './like.png';
 import dislike from './dislike.png';
 import MemberRecipe from './memberRecipe';
 import { userIDSelector } from '../../slices/authSlice';
+import NewRecipeForm from '../newRecipeForm/newRecipeForm';
 
 const MemberArea = () => {
     const username = useSelector(usernameSelector);
@@ -53,6 +54,7 @@ const MemberArea = () => {
             </div>
             <div className='recipeBuildBox'>
                 <h2> Create a New Recipe </h2>
+                <NewRecipeForm />
             </div>
         </div>
     );

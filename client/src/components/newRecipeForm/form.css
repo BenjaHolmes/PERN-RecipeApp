@@ -1,0 +1,147 @@
+#Dark .newRecipeForm {
+    width: 80%;
+    height: 100%;
+    min-width: 400px;
+    min-height: 975px;
+    border: 1px solid black;
+    background-color: white;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 10px 10px 5px #3F6844;
+    margin-bottom: 100px;
+}
+#Light .newRecipeForm {
+    width: 80%;
+    height: 100%;
+    min-width: 400px;
+    min-height: 975px;
+    border: 1px solid black;
+    background-color: white;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 10px 10px 5px #5DAA68;
+    margin-bottom: 100px;
+
+}
+.progressBar {
+    width: 100%;
+    height: 75px;
+    border: 1px solid red;
+}
+.formBody {
+    width: 100%;
+    height: 100%;
+    min-height: 800px;
+    border: 1px solid blue;
+}
+.formFooter {
+    width: 100%;
+    height: 100px;
+    border: 1px solid green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formBtn {
+    position: relative;
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+    border-radius: 0%;
+}
+.formBtn:after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    content: '>>>';
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #FAF1CF;
+    transition: all .35s;
+    opacity: 0;
+}
+.formBtn:hover::after {
+    width: 100%;
+    opacity: 1;
+}
+.formBtn2 {
+    position: relative;
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+    border-radius: 0%;
+}
+.formBtn2:after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    content: '<<<';
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: #FAF1CF;
+    transition: all .35s;
+    opacity: 0;
+}
+.formBtn2:hover::after {
+    width: 100%;
+    opacity: 1;
+}
+.titleHolder {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.formTitle {
+    height: 100px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.nameInput {
+    width: 300px;
+    height: 20px;
+    margin-top: 80px;
+}
+.nameInputHolder {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.methodHolder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -20px;
+    margin-bottom: 50px;
+}
+.methodHolder textarea {
+    width: 400px;
+    height: 100px;
+    resize: none;
+    margin: 10px;
+}
+.allergyListHolder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.checkHolder {
+    margin-right: -32.5px;
+    margin-left: 32.5px;
+    width: 20%;
+}
