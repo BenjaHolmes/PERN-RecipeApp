@@ -23,7 +23,7 @@ const getRecipeById = async(req, res) => {
     WHERE recipes.id = $1`, [id],
     (error, results) => {
         if (error) throw error;
-        res.send(results.rows[0]);
+        res.send(results.rows);
     })
 };
 

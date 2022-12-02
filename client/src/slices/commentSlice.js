@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const addComment = createAsyncThunk
 // const addSubComment = createAsyncThunk
 // const deleteComment = createAsyncThunk
 // const deleteSubComment = createAsyncThunk
@@ -19,6 +18,18 @@ export const getSubcomments = createAsyncThunk(
     'comment/getSubcomments',
     async (recipeid) => {
         const response = await axios.get(`http://localhost:4000/comments/sub/${recipeid}`);
+        return response.data;
+    }
+    )
+        
+export const postComment = createAsyncThunk(
+    'comment/postComment',
+    async (data) => {
+        const response = await axios.post(`http://localhost:4000/comments/post`, {
+            comment: data.comment,
+            recipe_id: data.recipe_id,
+            user_id: data.user_id
+        }, {withCredentials: true});
         return response.data;
     }
 )
@@ -69,14 +80,29 @@ const commentSlice = createSlice({
                 return({
                     main_comment_id: subcomment.main_comment_id,
                     author: subcomment.username,
+                    user_id: subcomment.user_id,
                     body: subcomment.body,
-                    subcommentId: subcomment.id,
+                    subcommentId: subcomment.subcomment_id,
                     recipeId: subcomment.recipe_id
                 })
             })
             
         },
         [getSubcomments.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
+        }, 
+        [postComment.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [postComment.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.mainComments.push({
+                body: "Your Comment was Added Successfully"
+            });
+        },
+        [postComment.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
         }
@@ -86,6 +112,6 @@ export const { setNewCommentBody } = commentSlice.actions;
 
 export const mainCommentsSelector = state => state.comment.mainComments;
 export const subCommentsSelector = state => state.comment.subComments;
-
+export const newCommentBodySelector = state => state.comment.newCommentBody;
 
 export default commentSlice.reducer;

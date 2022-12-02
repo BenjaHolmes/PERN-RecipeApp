@@ -26,7 +26,18 @@ const getSubcomments = async(req, res) => {
     })
 }
 
+const postComment = async(req, res) => {
+    const { comment, recipe_id, user_id } = req.body;
+    pool.query(`INSERT INTO comments (body, recipe_id, user_id)
+    VALUES ($1, $2, $3)`, [comment, recipe_id, user_id],
+    (error, results) => {
+        if (error) throw error;
+        res.send(results.rows[0]);
+    })
+}
+
 router.get('/sub/:id', getSubcomments);
 router.get('/:id', getCommentsById);
+router.post('/post', postComment);
 
 module.exports = router;

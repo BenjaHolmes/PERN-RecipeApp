@@ -8,11 +8,13 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import like from '../memberArea/like.png';
 import dislike from '../memberArea/dislike.png';
-import { authenticationSelector } from '../../slices/authSlice';
+import { authenticationSelector, userIDSelector } from '../../slices/authSlice';
 import { getComments, mainCommentsSelector } from '../../slices/commentSlice';
 import IngredientList from './ingredientList';
 import Comment from '../comments/comment';
+import { setNewCommentBody, newCommentBodySelector, postComment } from '../../slices/commentSlice';
 import './recipeDetailsPage.css';
+import { getSubcomments } from '../../slices/commentSlice';
 
 const RecipeDetailsPage = () => {
 
@@ -22,31 +24,45 @@ const RecipeDetailsPage = () => {
     const recipeIngredients = useSelector(chosenRecipeIngredientsSelector);
     const isAuthenticated = useSelector(authenticationSelector);
     const mainComments = useSelector(mainCommentsSelector);
-    const imgPath = `/RecipeImgs/${recipeInfo.picture_id}.jpg`;
+    const newCommentBody = useSelector(newCommentBodySelector);
+    const userID = useSelector(userIDSelector)
+    const imgPath = `/RecipeImgs/${recipeInfo[0].picture_id}.jpg`;
 
     useEffect(() => {
         dispatch(getRecipeById(recipeId));
         dispatch(getRecipesIngredients(recipeId));
         dispatch(getComments(recipeId));
+        dispatch(getSubcomments(recipeId));
         // window.scrollTo(0, 0);
     }, [dispatch, recipeId])
+    
+
+    const handleCommentPost = () => {
+        const data = {
+            comment: newCommentBody,
+            recipe_id: recipeId,
+            user_id: userID
+        }
+        // console.log(data);
+        dispatch(postComment(data));
+    }
 
     return (
         <div className='recipeInfoBox'>
             <div className='topInfo'>
-                <h1> {recipeInfo.name} </h1>
+                <h1> {recipeInfo[0].name} </h1>
                 <img src={imgPath} alt='' />
             </div>
             <div className='likeBox'>
                 <div className='likes'>
                     <img src={like} alt="A Thumbs Up Icon for Likes" />
                     <p> Likes </p>
-                    <p className='num'> {recipeInfo.number_of_likes} </p>
+                    <p className='num'> {recipeInfo[0].number_of_likes} </p>
                 </div> 
                 <div className='dislikes'>
                     <img src={dislike} alt="A Thumbs Down Icon for Dislikes" />
                     <p> Dislikes </p>
-                    <p className='num'> {recipeInfo.number_of_dislikes} </p>
+                    <p className='num'> {recipeInfo[0].number_of_dislikes} </p>
                 </div> 
             </div>
             {/* Retreiving Ingredient Data for selected recipe and then mapping the data to make a list */}
@@ -64,34 +80,34 @@ const RecipeDetailsPage = () => {
                 <div className='methodList'>
                     <ul>
                         <li>
-                            {recipeInfo.step_1}
+                            {recipeInfo[0].step_1}
                         </li>
                         <li>
-                            {recipeInfo.step_2}
+                            {recipeInfo[0].step_2}
                         </li>
                         <li>
-                            {recipeInfo.step_3}
+                            {recipeInfo[0].step_3}
                         </li>
                         <li>
-                            {recipeInfo.step_4}
+                            {recipeInfo[0].step_4}
                         </li>
                         <li>
-                            {recipeInfo.step_5}
+                            {recipeInfo[0].step_5}
                         </li>
                         <li>
-                            {recipeInfo.step_6}
+                            {recipeInfo[0].step_6}
                         </li>
                         <li>
-                            {recipeInfo.step_7}
+                            {recipeInfo[0].step_7}
                         </li>
                         <li>
-                            {recipeInfo.step_8}
+                            {recipeInfo[0].step_8}
                         </li>
                         <li>
-                            {recipeInfo.step_9}
+                            {recipeInfo[0].step_9}
                         </li>
                         <li>
-                            {recipeInfo.step_10}
+                            {recipeInfo[0].step_10}
                         </li>
                     </ul>
                 </div>
@@ -102,14 +118,15 @@ const RecipeDetailsPage = () => {
                         <div className='newCommentForm'>
                             { isAuthenticated === false ? 
                             <div>
-                                <textarea disabled > </textarea>
+                                <textarea disabled type='text' placeholder='Add a Comment..' /> 
                                 <button disabled className='postComment'> Post Comment </button>
                                 <p className='unAuthTxt'> Please Log in to Comment </p>
                             </div>
                             :
                             <div>
-                                <textarea> Add a Comment.. </textarea>
-                                <button className='postComment'> Post Comment </button>
+                                <textarea onChange={e => dispatch(setNewCommentBody(e.target.value)) } 
+                                type='text' placeholder='Add a Comment..' maxLength={255}/> 
+                                <button className='postComment' onClick={handleCommentPost}> Post Comment </button>
                             </div>
                             }
                             { mainComments != null ? mainComments.map((comment, index) => {

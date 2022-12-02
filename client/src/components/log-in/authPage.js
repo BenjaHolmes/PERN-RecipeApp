@@ -34,13 +34,11 @@ const AuthPage = () => {
         dispatch(registerUser(data))
     };
 
-    const handleGetUser = () => {
-        dispatch(getUser());
-    }
     // Checks if the user is logged in on page load so correct content loads
     useEffect(() => {
         dispatch(getUser());
     })
+    
     return (
         <div>
             { username != null ? <MemberArea /> :
@@ -64,8 +62,7 @@ const AuthPage = () => {
                     <button onClick={handleRegister}> Submit </button>
                 </div>
             </div>
-}
-            
+            }   
         </div>
     );
 }

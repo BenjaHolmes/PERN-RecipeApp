@@ -7,15 +7,15 @@ import { userIDSelector } from '../../slices/authSlice';
 import { getSubcomments, subCommentsSelector } from '../../slices/commentSlice';
 import './comment.css'
 import Subcomment from './subcomment';
+import { chosenRecipeSelector } from '../../slices/recipesSlice';
 
 const Comment = (props) => {
     const dispatch = useDispatch();
     const allSubcomments = useSelector(subCommentsSelector);
     const userId = useSelector(userIDSelector);
+    const recipeId = useSelector(chosenRecipeSelector);
 
-    useEffect(() => {
-        dispatch(getSubcomments(props.recipeId));
-    }, [dispatch, props.recipeId])
+    
      
     return (
         <div>
@@ -35,9 +35,11 @@ const Comment = (props) => {
                 </div>
             </div>
             <div className='subCommentBox'>
+                {/* Here I filter out the subcomments that are related to the main comment */}
                 { allSubcomments != null ? allSubcomments.map((subcomment, index) => {
                     if (subcomment.main_comment_id === props.id) {
                      return <Subcomment key={index} author={subcomment.author} body={subcomment.body} 
+                     userId={subcomment.user_id}
                     /> } else {
                         return ''
                     }
