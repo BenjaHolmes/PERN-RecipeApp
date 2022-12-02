@@ -15,7 +15,15 @@ export const getRecipeById = createAsyncThunk(
         const response = await axios.get(`http://localhost:4000/recipes/${id}`);
         return response.data;
     }
-)
+);
+
+export const getRecipesIngredients = createAsyncThunk(
+    'recipes/getRecipesIngredients',
+    async (id) => {
+        const response = await axios.get(`http://localhost:4000/ingredients/${id}`);
+        return response.data;
+    }
+);
 
  const initialState = {
     recipes: [],
@@ -23,9 +31,10 @@ export const getRecipeById = createAsyncThunk(
     recipesToSort: [],
     chosenRecipeId: 0,
     chosenRecipe: [],
+    chosenRecipeIngredients: [],
+    searchParameter: 'All Recipes',
     loading: false,
-    error: null,
-    searchParameter: 'All Recipes'
+    error: null
 }
 
 const recipesSlice = createSlice({
@@ -94,6 +103,18 @@ const recipesSlice = createSlice({
         [getRecipeById.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
+        }, 
+        [getRecipesIngredients.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [getRecipesIngredients.fulfilled]: (state, action) => {
+            state.chosenRecipeIngredients = action.payload;
+            state.loading = false;
+        },
+        [getRecipesIngredients.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
         }
     }
 });
@@ -103,5 +124,6 @@ export const recipesSelector = state => state.recipes.recipesToSort;
 export const searchParameterSelector = state => state.recipes.searchParameter;
 export const chosenRecipeSelector = state => state.recipes.chosenRecipeId;
 export const chosenRecipeInfoSelector = state => state.recipes.chosenRecipe;
+export const chosenRecipeIngredientsSelector = state => state.recipes.chosenRecipeIngredients;
 
 export default recipesSlice.reducer;

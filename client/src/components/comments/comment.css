@@ -1,0 +1,36 @@
+.commentBox {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    width: 99.8%;
+    min-height: 80px;
+    background-color: white;
+    border: 1px dotted #ddd;
+    
+    align-items: center;
+    position: relative;
+}
+.replyBox {
+    width: 50%;
+    height: 90%;
+    margin-left: 10px;
+    border: 1px solid black;
+}
+.replyBox img {
+    position: absolute;
+    top: 10px;
+}
+.replyBox p {
+    position: absolute;
+    top: 38px;
+    left: 15px;
+}
+.commentAuthor {
+    font-size: 10px;
+}
+.trashCan {
+    position: absolute;
+    right: 5px;
+    bottom: 25px;
+    width: 35px;
+    height: 35px;
+}

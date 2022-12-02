@@ -45,3 +45,22 @@ CREATE TABLE recipe_ingredients (
   quantity VARCHAR(50),
   primary key (recipe_id, ingredient_id)
 );
+
+
+--Adding comment tables
+CREATE TABLE comments (
+    id BIGSERIAL PRIMARY KEY,
+    body VARCHAR(255),
+    user_id BIGSERIAL REFERENCES users(id) ON DELETE CASCADE,
+    recipe_id BIGSERIAL REFERENCES recipes(id) ON DELETE CASCADE
+);
+
+CREATE TABLE subcomments (
+  id BIGSERIAL PRIMARY KEY,
+  body VARCHAR(255),
+  main_comment_id BIGSERIAL REFERENCES comments(id),
+  user_id BIGSERIAL REFERENCES users(id) ON DELETE CASCADE
+);
+
+ALTER TABLE subcomments
+ADD COLUMN recipe_id BIGSERIAL REFERENCES recipes(id)

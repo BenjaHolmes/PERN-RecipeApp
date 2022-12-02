@@ -146,5 +146,6 @@ export const logInPasswordSelector = state => state.auth.logInPassword;
 export const registerUsernameSelector = state => state.auth.registerUsername;
 export const registerEmailSelector = state => state.auth.registerEmail;
 export const registerPasswordSelector = state => state.auth.registerPassword;
+export const authenticationSelector = state => state.auth.isAuthorised;
 
 export default authSlice.reducer;

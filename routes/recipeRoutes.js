@@ -12,7 +12,7 @@ const getRecipes = async (req, res) => {
         if (error) throw error;
         res.send(results.rows);
     })
-}
+};
 
 // Get One Recipe based on ID
 const getRecipeById = async(req, res) => {
@@ -25,7 +25,7 @@ const getRecipeById = async(req, res) => {
         if (error) throw error;
         res.send(results.rows[0]);
     })
-}
+};
 
 
 router.get('/all', getRecipes);

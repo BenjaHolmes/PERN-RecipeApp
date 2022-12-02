@@ -12,6 +12,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const recipeRoutes = require('./routes/recipeRoutes');
 const memberAreaRoutes = require('./routes/memberAreaRoutes');
+const ingredientRoutes = require('./routes/ingredientRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 
 // Middleware ------------------------------------------------------------
 
@@ -103,10 +105,11 @@ app.get('/auth/logout', (req, res) => {
 // Route Handlers --------------------------------------------------------
 app.use('/recipes', recipeRoutes);
 app.use('/members', memberAreaRoutes);
+app.use('/ingredients', ingredientRoutes);
+app.use('/comments', commentRoutes);
 
 
 // Server Setup ----------------------------------------------------------
-
 const PORT = process.env.port || 4000;
 app.listen(PORT, () => {
     console.log(`Server is Listening on Port ${PORT}`)

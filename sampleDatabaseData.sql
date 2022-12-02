@@ -208,6 +208,20 @@ VALUES (10, 'Cut Pork into thin slices and tenderize if necessary.',
 'Add in the chopped Spring Onions', 
 'Serve with Rice', '', '', '', '', '');
 
+--Comments
+INSERT INTO comments (body, user_id, recipe_id)
+VALUES ('This Recipe was Lovely! I''ll be making this every week!', 4, 1)
+INSERT INTO comments (body, user_id, recipe_id)
+VALUES ('My kids cleaned their plates!!', 5, 1)
+
+--SubComments
+INSERT INTO subcomments (body, main_comment_id, user_id)
+VALUES ('Great comment Gary1, convinced me to try it :)', 1, 6)
+INSERT INTO subcomments (body, main_comment_id, user_id)
+VALUES ('Agreed, im going to have it tonight!', 1, 7);
+INSERT INTO subcomments (body, main_comment_id, user_id)
+VALUES ('Such a novel idea.', 2, 8);
+
 -- Join All Recipe Info
 SELECT * FROM recipes
 JOIN recipe_ingredients ON
@@ -261,3 +275,8 @@ ADD constraint "allergy_info_recipe_id_fkey"
 FOREIGN KEY (recipe_id)
 REFERENCES recipes(id)
 ON DELETE CASCADE ON UPDATE NO ACTION;
+
+-- Get a Recipe's Comments
+SELECT * FROM comments 
+JOIN users ON users.id = comments.user_id
+WHERE recipe_id = 1
