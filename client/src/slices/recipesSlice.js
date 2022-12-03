@@ -30,7 +30,30 @@ export const getRecipesIngredients = createAsyncThunk(
     // Second Recipe State holds the sorted list, so that we maintain the full list in the first piece of state.
     recipesToSort: [],
     chosenRecipeId: 0,
-    chosenRecipe: [],
+    chosenRecipe: [{
+        id: 0,
+        name: '',
+        number_of_likes: 0,
+        number_of_dislikes: 0,
+        created_by_user: 0,
+        picture_id: 0,
+        recipe_id: 0,
+        contains_meat: false,
+        contains_fish: false,
+        contains_alcohol: false,
+        contains_gluten: false,
+        is_vegan: false,
+        step_1: '',
+        step_2: '',
+        step_3: '',
+        step_4: '',
+        step_5: '',
+        step_6: '',
+        step_7: '',
+        step_8: '',
+        step_9: '',
+        step_10: '',
+    }],
     chosenRecipeIngredients: [],
     searchParameter: 'All Recipes',
     loading: false,
@@ -97,7 +120,7 @@ const recipesSlice = createSlice({
             state.error = null;
         },
         [getRecipeById.fulfilled]: (state, action) => {
-            state.chosenRecipe = action.payload;
+            state.chosenRecipe = action.payload[0];
             state.loading = false;
         },
         [getRecipeById.rejected]: (state, action) => {

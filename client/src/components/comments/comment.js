@@ -1,21 +1,21 @@
 import React from 'react';
 import replyIcon from './commentIcons/replyIcon.png';
 import deleteIcon from './commentIcons/deleteIcon.png';
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userIDSelector } from '../../slices/authSlice';
-import { getSubcomments, subCommentsSelector } from '../../slices/commentSlice';
+import { subCommentsSelector, deleteComment, setCommentForDeletion } from '../../slices/commentSlice';
 import './comment.css'
 import Subcomment from './subcomment';
-import { chosenRecipeSelector } from '../../slices/recipesSlice';
 
 const Comment = (props) => {
     const dispatch = useDispatch();
     const allSubcomments = useSelector(subCommentsSelector);
     const userId = useSelector(userIDSelector);
-    const recipeId = useSelector(chosenRecipeSelector);
 
-    
+    const handleDeletion = () => {
+        dispatch(deleteComment(props.id));
+        dispatch(setCommentForDeletion(props.id));
+    }
      
     return (
         <div>
@@ -30,7 +30,8 @@ const Comment = (props) => {
                 </div>
                 <div className='trashBox'>
                     { userId === props.userId ? 
-                    <img src={deleteIcon} className='trashCan' alt='Click to Delete This Comment' />
+                    <img src={deleteIcon} className='trashCan' alt='Click to Delete This Comment' 
+                    onClick={handleDeletion}/>
                     : '' }
                 </div>
             </div>

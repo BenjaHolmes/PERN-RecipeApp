@@ -36,8 +36,18 @@ const postComment = async(req, res) => {
     })
 }
 
+const deleteComment = async(req, res) => {
+    const commentId = req.params.id;
+    pool.query("DELETE FROM comments WHERE comment_id = $1", [commentId],
+    (error, results) => {
+        if (error) throw error;
+        res.status(200).send("Comment was Removed Successfully");
+    })
+}
+
 router.get('/sub/:id', getSubcomments);
 router.get('/:id', getCommentsById);
 router.post('/post', postComment);
+router.delete('/:id', deleteComment)
 
 module.exports = router;

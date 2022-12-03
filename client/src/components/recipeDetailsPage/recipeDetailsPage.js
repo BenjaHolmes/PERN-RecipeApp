@@ -6,18 +6,20 @@ import { getRecipeById,
     chosenRecipeIngredientsSelector } from '../../slices/recipesSlice';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import like from '../memberArea/like.png';
-import dislike from '../memberArea/dislike.png';
 import { authenticationSelector, userIDSelector } from '../../slices/authSlice';
 import { getComments, mainCommentsSelector } from '../../slices/commentSlice';
+import { setNewCommentBody, newCommentBodySelector, postComment } from '../../slices/commentSlice';
+import { getSubcomments } from '../../slices/commentSlice';
+import { useParams } from 'react-router-dom';
 import IngredientList from './ingredientList';
 import Comment from '../comments/comment';
-import { setNewCommentBody, newCommentBodySelector, postComment } from '../../slices/commentSlice';
+import like from '../memberArea/like.png';
+import dislike from '../memberArea/dislike.png';
 import './recipeDetailsPage.css';
-import { getSubcomments } from '../../slices/commentSlice';
 
 const RecipeDetailsPage = () => {
-
+    const params = useParams();
+    console.log(params.id);
     const dispatch = useDispatch();
     const recipeId = useSelector(chosenRecipeSelector);
     const recipeInfo = useSelector(chosenRecipeInfoSelector);
@@ -26,15 +28,15 @@ const RecipeDetailsPage = () => {
     const mainComments = useSelector(mainCommentsSelector);
     const newCommentBody = useSelector(newCommentBodySelector);
     const userID = useSelector(userIDSelector)
-    const imgPath = `/RecipeImgs/${recipeInfo[0].picture_id}.jpg`;
+    const imgPath = `/RecipeImgs/${recipeInfo.picture_id}.jpg`;
 
     useEffect(() => {
-        dispatch(getRecipeById(recipeId));
-        dispatch(getRecipesIngredients(recipeId));
-        dispatch(getComments(recipeId));
-        dispatch(getSubcomments(recipeId));
+        dispatch(getRecipeById(params.id));
+        dispatch(getRecipesIngredients(params.id));
+        dispatch(getComments(params.id));
+        dispatch(getSubcomments(params.id));
         // window.scrollTo(0, 0);
-    }, [dispatch, recipeId])
+    }, [dispatch, params.id])
     
 
     const handleCommentPost = () => {
@@ -50,19 +52,19 @@ const RecipeDetailsPage = () => {
     return (
         <div className='recipeInfoBox'>
             <div className='topInfo'>
-                <h1> {recipeInfo[0].name} </h1>
+                <h1> {recipeInfo.name} </h1>
                 <img src={imgPath} alt='' />
             </div>
             <div className='likeBox'>
                 <div className='likes'>
                     <img src={like} alt="A Thumbs Up Icon for Likes" />
                     <p> Likes </p>
-                    <p className='num'> {recipeInfo[0].number_of_likes} </p>
+                    <p className='num'> {recipeInfo.number_of_likes} </p>
                 </div> 
                 <div className='dislikes'>
                     <img src={dislike} alt="A Thumbs Down Icon for Dislikes" />
                     <p> Dislikes </p>
-                    <p className='num'> {recipeInfo[0].number_of_dislikes} </p>
+                    <p className='num'> {recipeInfo.number_of_dislikes} </p>
                 </div> 
             </div>
             {/* Retreiving Ingredient Data for selected recipe and then mapping the data to make a list */}
@@ -80,34 +82,34 @@ const RecipeDetailsPage = () => {
                 <div className='methodList'>
                     <ul>
                         <li>
-                            {recipeInfo[0].step_1}
+                            {recipeInfo.step_1}
                         </li>
                         <li>
-                            {recipeInfo[0].step_2}
+                            {recipeInfo.step_2}
                         </li>
                         <li>
-                            {recipeInfo[0].step_3}
+                            {recipeInfo.step_3}
                         </li>
                         <li>
-                            {recipeInfo[0].step_4}
+                            {recipeInfo.step_4}
                         </li>
                         <li>
-                            {recipeInfo[0].step_5}
+                            {recipeInfo.step_5}
                         </li>
                         <li>
-                            {recipeInfo[0].step_6}
+                            {recipeInfo.step_6}
                         </li>
                         <li>
-                            {recipeInfo[0].step_7}
+                            {recipeInfo.step_7}
                         </li>
                         <li>
-                            {recipeInfo[0].step_8}
+                            {recipeInfo.step_8}
                         </li>
                         <li>
-                            {recipeInfo[0].step_9}
+                            {recipeInfo.step_9}
                         </li>
                         <li>
-                            {recipeInfo[0].step_10}
+                            {recipeInfo.step_10}
                         </li>
                     </ul>
                 </div>

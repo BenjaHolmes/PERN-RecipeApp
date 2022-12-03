@@ -3,7 +3,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // const addSubComment = createAsyncThunk
-// const deleteComment = createAsyncThunk
 // const deleteSubComment = createAsyncThunk
 
 export const getComments = createAsyncThunk(
@@ -12,7 +11,7 @@ export const getComments = createAsyncThunk(
         const response = await axios.get(`http://localhost:4000/comments/${recipeid}`);
         return response.data;
     }
-    )
+)
     
 export const getSubcomments = createAsyncThunk(
     'comment/getSubcomments',
@@ -20,7 +19,7 @@ export const getSubcomments = createAsyncThunk(
         const response = await axios.get(`http://localhost:4000/comments/sub/${recipeid}`);
         return response.data;
     }
-    )
+)
         
 export const postComment = createAsyncThunk(
     'comment/postComment',
@@ -29,15 +28,24 @@ export const postComment = createAsyncThunk(
             comment: data.comment,
             recipe_id: data.recipe_id,
             user_id: data.user_id
-        }, {withCredentials: true});
+        }, { withCredentials: true });
         return response.data;
     }
 )
 
+export const deleteComment = createAsyncThunk(
+    'comment/deleteComment',
+    async (commentId) => {
+        const response = await axios.delete(`http://localhost:4000/comments/${commentId}`);
+        return response.data;
+    }
+)
+            
 const initialState = {
     newCommentBody: '',
     mainComments: [],
     subComments: [],
+    idForDeletion: [],
     loading: false,
     error: null
 }
@@ -48,6 +56,9 @@ const commentSlice = createSlice({
     reducers: {
         setNewCommentBody(state, action) {
             state.newCommentBody = action.payload;
+        },
+        setCommentForDeletion(state, action) {
+            state.idForDeletion = action.payload;
         }
     }, extraReducers: {
         [getComments.pending]: (state) => {
@@ -105,10 +116,26 @@ const commentSlice = createSlice({
         [postComment.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
+        }, 
+        [deleteComment.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [deleteComment.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.test = 'success!'
+            let filteredMembersRecipes = state.membersRecipes.filter(
+                recipe => recipe.id !== state.idForDeletion);
+            state.membersRecipes = filteredMembersRecipes;
+            
+        },
+        [deleteComment.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
         }
 }});
 
-export const { setNewCommentBody } = commentSlice.actions;
+export const { setNewCommentBody, setCommentForDeletion } = commentSlice.actions;
 
 export const mainCommentsSelector = state => state.comment.mainComments;
 export const subCommentsSelector = state => state.comment.subComments;
