@@ -46,10 +46,15 @@ const MemberArea = () => {
                     <p> No Recipes Found. Create One Below! </p> }
                 </div>
                 <div className='likeStats'>
-                    <h3> Your Recipes Have {totalLikes} Likes </h3>
                     <img src={like} alt='A Thumbs Up Icon for Likes' />
-                    <h3> Your Recipes Have {totalDislikes} Dislikes </h3>
+                    <h3> Your Recipes Have </h3> <br/>
+                    <span className='likeNum'>{totalLikes}</span> <br />
+                    <h3> Likes </h3>
+                    <hr className='likeDivider' />
                     <img src={dislike} alt='A Thumbs Down Icon for Dislikes'/>
+                    <h3> Your Recipes Have </h3> <br />
+                    <span className='likeNum'>{totalDislikes}</span> <br />
+                    <h3> Dislikes </h3>
                 </div>
             </div>
             <div className='recipeBuildBox'>

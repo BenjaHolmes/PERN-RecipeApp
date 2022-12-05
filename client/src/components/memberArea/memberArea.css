@@ -1,14 +1,27 @@
-.memberContainer {
+#Light .memberContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
     background-color: aliceblue;
 }
-.welcomeBox {
+#Dark .memberContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: #2d382e;
+}
+#Light .welcomeBox {
     display: flex;
     width: 100%;
     background-color: aliceblue;
+    justify-content: space-between;
+}
+#Dark .welcomeBox {
+    display: flex;
+    width: 100%;
+    background-color: #2d382e;
     justify-content: space-between;
 }
 #Light .welcomeBox h1 {
@@ -17,7 +30,7 @@
     color:#5DAA68;
 }
 #Dark .welcomeBox h1 {
-    color:#203b24;
+    color:#3F6844;
     letter-spacing: 3px;
     margin: 15px;
 }
@@ -28,7 +41,7 @@
     font-size: 16px;
     letter-spacing: 1px;
     background-color: #FAF1CF;
-    border: 2px solid #203b24;
+    border: 2px solid #3F6844;
 }
 #Dark .welcomeBox button {
     margin: 15px;
@@ -58,16 +71,57 @@
     height: 100%;
     width: 70%;
 }
-.likeStats {
+#Light .likeStats {
     display: flex;
+    flex-direction: column;
     align-items: center;
     height: 100%;
     width: 25%;
-    border: 1px solid black;
+    border: 2px solid #3F6844;
+    background-color: #5DAA68;
+    text-shadow: 2px 2px #203b24;
+    color: #FAF1CF;
+    border-radius: 3%;
+}
+#Dark .likeStats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 25%;
+    border: 2px solid #5DAA68;
+    background-color: #3F6844;
+    text-shadow: 2px 2px #203b24;
+    color: #FAF1CF;
+    border-radius: 3%;
 }
 .likeStats img {
     height: 40px;
     width: 40px;
+    border: 1px solid #FAF1CF;
+    background-color: #696969;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 50%;
+}
+.likeNum {
+    font-size: 50px;
+    margin-top: -15px;
+    margin-bottom: -15px;
+}
+.likeDivider {
+    width: 75%;
+    opacity: 50%;
+    height: 1px;
+    color: #3F6844;
+    background-color:#3F6844;
+}
+#Dark .likeDivider {
+    width: 75%;
+    opacity: 50%;
+    height: 1px;
+    color: #5DAA68;
+    background-color:#5DAA68;
 }
 .prevRecipe {
     width: 100%;
