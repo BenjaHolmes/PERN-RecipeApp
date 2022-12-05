@@ -4,7 +4,7 @@ const router = Router();
 
 // Get All Recipes Attributed to the Logged In Member
 const getMembersRecipes = async (req, res) => {
-    const userId = req.params.id;
+    const userId = parseInt(req.params.id);
     pool.query(`SELECT * FROM recipes
     WHERE created_by_user = $1`, [userId],
     (error, results) => {
@@ -15,7 +15,7 @@ const getMembersRecipes = async (req, res) => {
 
 //Delete a Recipe the Member has Made.
 const deleteMembersRecipes = async (req, res) => {
-    const recipeId = req.params.id;
+    const recipeId = parseInt(req.params.id);
     pool.query(`DELETE FROM recipes WHERE id = $1`, [recipeId],
     (error, results) => {
         if (error) throw error;

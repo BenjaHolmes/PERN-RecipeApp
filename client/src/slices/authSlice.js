@@ -110,6 +110,9 @@ const authSlice = createSlice({
         [getUser.fulfilled]: (state, action) => {
             state.user = action.payload;
             state.loading = false;
+            if (state.user.id) {
+                state.isAuthorised = true;
+            }
         },
         [getUser.rejected]: (state, action) => {
             state.error = action.error.message;
@@ -147,5 +150,6 @@ export const registerUsernameSelector = state => state.auth.registerUsername;
 export const registerEmailSelector = state => state.auth.registerEmail;
 export const registerPasswordSelector = state => state.auth.registerPassword;
 export const authenticationSelector = state => state.auth.isAuthorised;
+
 
 export default authSlice.reducer;

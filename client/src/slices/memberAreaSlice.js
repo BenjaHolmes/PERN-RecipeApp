@@ -21,16 +21,7 @@ const initialState = {
     idForDeletion: '',
     membersRecipes: [],
     formPage: 1,
-    recipeToAdd:  {
-        name: '',
-        fish: false,
-        meat: false,
-        gluten: false,
-        vegan: false,
-        alcohol: false,
-        ingredients: [],
-        method: []
-    }
+    
 }
 
 const memberAreaSlice = createSlice({

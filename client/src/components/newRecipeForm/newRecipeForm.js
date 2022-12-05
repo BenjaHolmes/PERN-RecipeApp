@@ -2,6 +2,8 @@ import React from 'react';
 import './form.css';
 import { incrementFormPage, decrementFormPage, formPageSelector } from '../../slices/memberAreaSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllIngredients } from '../../slices/formSlice';
 import Form1Name from './form1-Name';
 import Form2Ingredients from './form2-Ingredients';
 import Form3Steps from './form3-Steps';
@@ -10,6 +12,10 @@ import Form4Allergens from './form4-Allergens';
 const NewRecipeForm = () => {
     const dispatch = useDispatch();
     const formPage = useSelector(formPageSelector);
+
+    useEffect(() => {
+        dispatch(getAllIngredients());
+    }, [dispatch]);
 
     const displayFormPage = () => {
         if (formPage === 1) {

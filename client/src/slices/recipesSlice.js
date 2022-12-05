@@ -25,6 +25,17 @@ export const getRecipesIngredients = createAsyncThunk(
     }
 );
 
+export const likeDislike = createAsyncThunk(
+    'recipes/likeDislike',
+    async (data) => {
+        const response = await axios.post(`http://localhost:4000/recipes/likes`, {
+            recipe_id: data.id,
+            likeType: data.likeType
+        });
+        return response.data;
+    }
+)
+
  const initialState = {
     recipes: [],
     // Second Recipe State holds the sorted list, so that we maintain the full list in the first piece of state.
@@ -138,11 +149,27 @@ const recipesSlice = createSlice({
         [getRecipesIngredients.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
+        }, 
+        [likeDislike.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [likeDislike.fulfilled]: (state, action) => {
+            if (action.payload === 'like') {
+                state.chosenRecipe.number_of_likes += 1
+            } else {
+                state.chosenRecipe.number_of_dislikes += 1
+            }
+            state.loading = false;
+        },
+        [likeDislike.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
         }
     }
 });
 
-export const { setRecipes, setSearchParameter, setChosenRecipe } = recipesSlice.actions;
+export const { setRecipes, setSearchParameter, setChosenRecipe, setLikeDislike } = recipesSlice.actions;
 export const recipesSelector = state => state.recipes.recipesToSort;
 export const searchParameterSelector = state => state.recipes.searchParameter;
 export const chosenRecipeSelector = state => state.recipes.chosenRecipeId;

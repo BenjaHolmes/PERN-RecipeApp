@@ -14,7 +14,27 @@ const getRecipesIngredients = async(req, res) => {
     })
 };
 
+// Get a list of all ingredients in Database
+const getAllIngredients = async(req, res) => {
+    pool.query(`SELECT * FROM ingredients`,
+    (error, results) => {
+        if (error) throw error;
+        res.send(results.rows);
+    })
+}
+
+const addNewIngredient = async(req, res) => {
+    const name = req.body.ingredientName;
+    pool.query(`INSERT INTO ingredients (name)
+    VALUES ($1)`, [name],
+    (error, results) => {
+        if (error) throw error;
+        res.send(results.rows);
+    })
+}
 
 router.get('/:id', getRecipesIngredients);
+router.get('/', getAllIngredients);
+router.post('/', addNewIngredient)
 
 module.exports = router;

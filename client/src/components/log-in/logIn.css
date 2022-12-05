@@ -30,8 +30,8 @@
     z-index: 999;
 }
 .loginContainer button {
-    width: 80%;
-    height: 30px;
+    width: 90%;
+    height: 45px;
     margin: 8px;
     margin-bottom: 3px;
     background-color: #FAF1CF;
@@ -41,7 +41,7 @@
 .loginContainer p {
     color: white;
     position: absolute;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     top: -15px;
     right: 20px;

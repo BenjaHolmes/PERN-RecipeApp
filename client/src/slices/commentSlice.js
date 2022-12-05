@@ -109,7 +109,7 @@ const commentSlice = createSlice({
         },
         [postComment.fulfilled]: (state, action) => {
             state.loading = false;
-            state.mainComments.push({
+            state.mainComments.unshift({
                 body: "Your Comment was Added Successfully"
             });
         },
@@ -123,11 +123,9 @@ const commentSlice = createSlice({
         },
         [deleteComment.fulfilled]: (state, action) => {
             state.loading = false;
-            state.test = 'success!'
-            let filteredMembersRecipes = state.membersRecipes.filter(
-                recipe => recipe.id !== state.idForDeletion);
-            state.membersRecipes = filteredMembersRecipes;
-            
+            let filteredComments = state.mainComments.filter(
+                comments => comments.id !== state.idForDeletion);
+            state.mainComments = filteredComments;            
         },
         [deleteComment.rejected]: (state, action) => {
             state.error = action.error.message;

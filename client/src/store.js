@@ -4,6 +4,7 @@ import authReducer from './slices/authSlice';
 import recipesReducer from './slices/recipesSlice';
 import memberAreaReducer from './slices/memberAreaSlice';
 import commentReducer from './slices/commentSlice';
+import formReducer from './slices/formSlice';
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         auth: authReducer,
         recipes: recipesReducer,
         memberArea: memberAreaReducer,
-        comment: commentReducer
+        comment: commentReducer,
+        form: formReducer
             }
 });

@@ -27,9 +27,26 @@ const getRecipeById = async(req, res) => {
     })
 };
 
+// Handling user likes/dislikes
+const handleLikeDislike = async(req, res) => {
+    const recipe_id = parseInt(req.body.recipe_id);
+    const likeType = req.body.likeType;
+    if (likeType === 'like') {
+        pool.query(`UPDATE recipes
+    SET number_of_likes = number_of_likes + 1
+    WHERE id = $1`, [recipe_id]);
+    } else if (likeType === 'dislike') {
+        pool.query(`UPDATE recipes
+    SET number_of_dislikes = number_of_dislikes + 1
+    WHERE id = $1`, [recipe_id]);
+    }
+    res.send(likeType);
+}
+
 
 router.get('/all', getRecipes);
 router.get('/:id', getRecipeById);
+router.post('/likes', handleLikeDislike);
 
 module.exports = router;
 

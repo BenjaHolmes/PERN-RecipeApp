@@ -92,7 +92,6 @@ app.post('/auth/register', async (req, res) => {
 
 app.get('/auth/getUser', (req, res) => {
     res.send(req.user);
-    console.log(req.user);
 });
 
 //LogOut 

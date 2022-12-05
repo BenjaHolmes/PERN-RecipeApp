@@ -3,13 +3,17 @@ import { getRecipeById,
     getRecipesIngredients, 
     chosenRecipeSelector, 
     chosenRecipeInfoSelector, 
-    chosenRecipeIngredientsSelector } from '../../slices/recipesSlice';
+    chosenRecipeIngredientsSelector,
+    setChosenRecipe, 
+    likeDislike,
+    setLikeDislike } from '../../slices/recipesSlice';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticationSelector, userIDSelector } from '../../slices/authSlice';
 import { getComments, mainCommentsSelector } from '../../slices/commentSlice';
 import { setNewCommentBody, newCommentBodySelector, postComment } from '../../slices/commentSlice';
 import { getSubcomments } from '../../slices/commentSlice';
+import { getUser } from '../../slices/authSlice';
 import { useParams } from 'react-router-dom';
 import IngredientList from './ingredientList';
 import Comment from '../comments/comment';
@@ -19,7 +23,6 @@ import './recipeDetailsPage.css';
 
 const RecipeDetailsPage = () => {
     const params = useParams();
-    console.log(params.id);
     const dispatch = useDispatch();
     const recipeId = useSelector(chosenRecipeSelector);
     const recipeInfo = useSelector(chosenRecipeInfoSelector);
@@ -35,6 +38,9 @@ const RecipeDetailsPage = () => {
         dispatch(getRecipesIngredients(params.id));
         dispatch(getComments(params.id));
         dispatch(getSubcomments(params.id));
+        dispatch(setChosenRecipe(params.id))
+        // Need to check if a user is logged in so that they can leave a comment
+        dispatch(getUser());
         // window.scrollTo(0, 0);
     }, [dispatch, params.id])
     
@@ -45,8 +51,15 @@ const RecipeDetailsPage = () => {
             recipe_id: recipeId,
             user_id: userID
         }
-        // console.log(data);
         dispatch(postComment(data));
+    }
+
+    const handleLikeDislike = (type) => {
+        const data = {
+            id: recipeId,
+            likeType: type
+        }
+        dispatch(likeDislike(data));
     }
 
     return (
@@ -57,12 +70,14 @@ const RecipeDetailsPage = () => {
             </div>
             <div className='likeBox'>
                 <div className='likes'>
-                    <img src={like} alt="A Thumbs Up Icon for Likes" />
+                    <img src={like} alt="A Thumbs Up Icon for Likes" 
+                    onClick={() => handleLikeDislike('like')}/>
                     <p> Likes </p>
                     <p className='num'> {recipeInfo.number_of_likes} </p>
                 </div> 
                 <div className='dislikes'>
-                    <img src={dislike} alt="A Thumbs Down Icon for Dislikes" />
+                    <img src={dislike} alt="A Thumbs Down Icon for Dislikes" 
+                    onClick={() => handleLikeDislike('dislike')}/>
                     <p> Dislikes </p>
                     <p className='num'> {recipeInfo.number_of_dislikes} </p>
                 </div> 
