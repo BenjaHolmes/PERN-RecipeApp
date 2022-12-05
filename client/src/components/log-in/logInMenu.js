@@ -3,10 +3,12 @@ import './logIn.css'
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useNavigate } from 'react-router-dom';
 import { authenticationSelector } from '../../slices/authSlice';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logOutUser } from '../../slices/authSlice';
 
 const LogInMenu = (props) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const isAuthenticated = useSelector(authenticationSelector);
 
     return (
@@ -20,7 +22,10 @@ const LogInMenu = (props) => {
                     <button onClick={()=>navigate('/auth')}> Register </button>
                     </div>
                     :
+                    <div>
                     <button onClick={()=>navigate('/auth')}> Your Account </button>
+                    <button onClick={()=> dispatch(logOutUser())}> Log Out </button>
+                    </div>
                     }
                 </div>
             </div>

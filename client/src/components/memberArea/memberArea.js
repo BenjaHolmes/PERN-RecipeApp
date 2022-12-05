@@ -8,6 +8,7 @@ import like from './like.png';
 import dislike from './dislike.png';
 import MemberRecipe from './memberRecipe';
 import { userIDSelector } from '../../slices/authSlice';
+import { toggleForm, formOpenSelector } from '../../slices/formSlice';
 import NewRecipeForm from '../newRecipeForm/newRecipeForm';
 
 const MemberArea = () => {
@@ -15,6 +16,7 @@ const MemberArea = () => {
     const dispatch = useDispatch();
     const userId = parseInt(useSelector(userIDSelector));
     const membersRecipes = useSelector(membersRecipesSelector);
+    const formOpen = useSelector(formOpenSelector);
 
     useEffect(() => {
          dispatch(getMembersRecipes((userId)));
@@ -37,13 +39,19 @@ const MemberArea = () => {
                 <h1> Welcome Back {username} </h1>
                 <button onClick={handleLogOut}> Log Out </button>
             </div>
-            <h3> Your Recipes </h3>
+            <h3 className='recipesTitle'> Manage Your Recipes </h3>
+                <div className='prevRecipeTitles'> 
+                    <p >Recipe ID</p>
+                    <p>Name</p> 
+                    <p >Likes</p>
+                    <p >Dislikes</p>
+                </div>
             <div className='statisticsBox'>
                 <div className='previousRecipesBox'>
                     { membersRecipes.length > 0 ? membersRecipes.map((recipe, index) => 
                     <MemberRecipe key={index} id={recipe.id} name={recipe.name}
                     numLikes={recipe.number_of_likes} numDislikes={recipe.number_of_dislikes} />) : 
-                    <p> No Recipes Found. Create One Below! </p> }
+                    <p className='noRecipeText'> No Recipes Found. Create One Below! </p> }
                 </div>
                 <div className='likeStats'>
                     <img src={like} alt='A Thumbs Up Icon for Likes' />
@@ -58,8 +66,9 @@ const MemberArea = () => {
                 </div>
             </div>
             <div className='recipeBuildBox'>
-                <h2> Create a New Recipe </h2>
-                <NewRecipeForm />
+                <h3 onClick={() => dispatch(toggleForm())}> Or Click Here to Create a New Recipe </h3>
+                { formOpen === true ? 
+                <NewRecipeForm /> : '' }
             </div>
         </div>
     );

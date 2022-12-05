@@ -18,9 +18,7 @@ const Form2Ingredients = () => {
         const data = {
             name: newIngredient
         }
-        dispatch(addIngredient(data));
-        dispatch(getAllIngredients());
-        
+        dispatch(addIngredient(data)).then(() => dispatch(getAllIngredients()));        
     }
 
     return (

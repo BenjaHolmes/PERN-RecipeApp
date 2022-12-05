@@ -10,7 +10,20 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    background-color: #2d382e;
+    background-color: #121212;
+}
+#Light .recipesTitle {
+    margin-left: 15px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+#Dark .recipesTitle {
+    margin-left: 15px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: aliceblue;
 }
 #Light .welcomeBox {
     display: flex;
@@ -21,18 +34,21 @@
 #Dark .welcomeBox {
     display: flex;
     width: 100%;
-    background-color: #2d382e;
+    background-color: #121212;
     justify-content: space-between;
 }
 #Light .welcomeBox h1 {
     margin: 15px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     color:#5DAA68;
+    text-shadow: 1px 1px #FAF1CF;
 }
 #Dark .welcomeBox h1 {
-    color:#3F6844;
-    letter-spacing: 3px;
+    color: #FAF1CF;
+    letter-spacing: 2px;
     margin: 15px;
+    text-shadow: 1px 1px #5DAA68;
+
 }
 #Light .welcomeBox button {
     margin: 15px;
@@ -54,18 +70,72 @@
 }
 
 .recipeBuildBox {
+    margin-top: 45px;
     width: 100%;
     height: 100%;
-    min-height: 700px;
+    min-height: 400px;
+}
+#Light .recipeBuildBox h3 {
+    display: flex;
+    color: #FAF1CF;
+    text-shadow: 2px 2px #3F6844;
+    border: 2px solid #3F6844;
+    background-color: #5DAA68;
+    height: 60px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#Dark .recipeBuildBox h3 {
+    display: flex;
+    color: aliceblue;
+    text-shadow: 1px 1px #5DAA68;
+    border: 2px solid #5DAA68;
+    background-color: #3F6844;
+    height: 60px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#Light .prevRecipeTitles {
+    margin-left: 20px;
+    display: grid;
+    width: 59%;
+    height: 50px;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+}
+#Dark .prevRecipeTitles {
+    margin-left: 20px;
+    display: grid;
+    width: 59%;
+    color: aliceblue;
+    height: 50px;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
 }
 
-.statisticsBox {
+#Light .statisticsBox {
     display: flex;
     justify-content: space-around;
     height: 100%;
     width: 100%;
     min-height: 500px;
     background-color: aliceblue;
+}
+#Dark .statisticsBox {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+    min-height: 500px;
+    background-color: #121212;
 }
 .previousRecipesBox {
     height: 100%;
@@ -123,7 +193,7 @@
     color: #5DAA68;
     background-color:#5DAA68;
 }
-.prevRecipe {
+#Light .prevRecipe {
     width: 100%;
     height: 60px;
     padding: 5px;
@@ -131,15 +201,47 @@
     grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
     border: 1px dotted #5DAA68;
     align-items: center;
+    
+}
+#Dark .prevRecipe {
+    width: 100%;
+    height: 60px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+    border: 1px dotted #FAF1CF;
+    align-items: center;
+    color: aliceblue
+}
+.prevRecipe p {
+    font-size: 18px;
+}
+.pleft {
+    margin-left: 15px;
 }
 .deleteText {
     color: red;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-radius: 5%;
+    cursor: pointer;
+} 
+#Dark .deleteText {
+    color: white;
+    background-color: rgb(8, 20, 12);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50px;
+    border-radius: 5%;
+    cursor: pointer;
 } 
+#Dark .deleteText:hover {
+    background-color: rgb(25, 61, 37);
+} 
+
 .deletePopup {
     display: flex;
     justify-content: space-around;
@@ -154,4 +256,17 @@
     width: 60px;
     padding: 5px;
     margin: 5px;
+}
+#Light .noRecipeText {
+    display: flex;
+    justify-content: center;
+    margin-right: 15%;
+    font-size: 30px;
+}
+#Dark .noRecipeText {
+    display: flex;
+    justify-content: center;
+    color: aliceblue;
+    margin-right: 15%;
+    font-size: 30px;
 }

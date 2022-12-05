@@ -21,6 +21,7 @@ export const getAllIngredients = createAsyncThunk(
 )
 
 const initialState = {
+    showForm: false,
     ingredients: [],
     sortedIngredients: [],
     ingredientToAdd: '',
@@ -43,6 +44,9 @@ const formSlice = createSlice({
         setNewIngredient(state, action) {
             state.ingredientToAdd = action.payload;
         },
+        toggleForm(state) {
+            state.showForm = !state.showForm;
+        }
     }, extraReducers: {
         [getAllIngredients.pending]: (state, action) => {
             state.loading = true;
@@ -79,10 +83,11 @@ const formSlice = createSlice({
     }
 });
 
-export const { setNewIngredient } = formSlice.actions;
+export const { setNewIngredient, toggleForm } = formSlice.actions;
 
 export const sortedIngredientListSelector = state => state.form.sortedIngredients;
 export const newIngredientSelector = state => state.form.ingredientToAdd;
+export const formOpenSelector = state => state.form.showForm;
 
 
 export default formSlice.reducer;

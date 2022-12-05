@@ -20,10 +20,10 @@ const MemberRecipe = (props) => {
     return (
         <div>
             <div className='prevRecipe'>
-                <p> Recipe ID : {props.id} </p>
+                <p className='pleft'> {props.id} </p>
                 <p> {props.name} </p>
-                <p> Likes: {props.numLikes} </p>
-                <p> Dislikes: {props.numDislikes} </p>
+                <p className='pleft'> {props.numLikes} </p>
+                <p className='pleft'> {props.numDislikes} </p>
                 <button className='deleteText' onClick={showPopup}> Delete This Recipe </button>
             </div>
             <AnimatePresence>

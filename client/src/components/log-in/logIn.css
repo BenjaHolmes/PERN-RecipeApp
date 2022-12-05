@@ -1,5 +1,5 @@
 #Dark .loginContainer {
-    border: 1px solid #3F6844;
+    border: 2px solid #5DAA68;
     background-color: #3F6844;
     position: absolute;
     width: 150px;
@@ -15,7 +15,7 @@
 
 }
 #Light .loginContainer {
-    border: 1px solid #3F6844;
+    border: 2px solid #3F6844;
     background-color: #5DAA68;
     position: absolute;
     width: 150px;
