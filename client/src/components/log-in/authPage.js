@@ -18,12 +18,13 @@ const AuthPage = () => {
     const logInUsername = useSelector(logInUsernameSelector);
     const logInPassword = useSelector(logInPasswordSelector);
     const username = useSelector(usernameSelector);
+
     const handleLogIn = () => {
         const data = {
             username: logInUsername,
             password: logInPassword  
         }
-        dispatch(logInUser(data))
+        dispatch(logInUser(data)).then(() => dispatch(getUser()));
     }
     const handleRegister = () => {
         const data = {
@@ -31,17 +32,18 @@ const AuthPage = () => {
             email: registerEmail,
             password: registerPassword  
         }
-        dispatch(registerUser(data))
+        dispatch(registerUser(data)).then(() => dispatch(getUser()));
     };
 
-    // Checks if the user is logged in on page load so correct content loads
+    // Checks if the user is logged in on page load so the session can persist
     useEffect(() => {
         dispatch(getUser());
-    })
+    }, [dispatch])
     
     return (
         <div>
             { username != null ? <MemberArea /> :
+            <div className='authPageContainer'>
             <div className='authBox'>
                 <div className='logIn'>
                     <h2> Log In </h2>
@@ -61,6 +63,7 @@ const AuthPage = () => {
                     onChange={e => dispatch(setRegisterPassword(e.target.value))}/>
                     <button onClick={handleRegister}> Submit </button>
                 </div>
+            </div>
             </div>
             }   
         </div>

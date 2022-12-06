@@ -1,28 +1,51 @@
-.commentBox {
+#Light .commentBox {
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
-    width: 99.8%;
+    width: 95%;
     min-height: 80px;
-    background-color: white;
+    background-color: rgb(209, 215, 219);
     border: 1px dotted #ddd;
-    
     align-items: center;
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
 }
-.replyBox {
+#Dark .commentBox {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    width: 95%;
+    min-height: 80px;
+    background-color: #181818;
+    border: 2px solid #5DAA68;
+    align-items: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+#Light .replyBox {
     width: 50%;
     height: 90%;
     margin-left: 5px;
-    border: 1px solid black;
+    background-color: #5DAA68;
+    border: 2px solid #3F6844;
+    cursor: pointer;
+}
+#Dark .replyBox {
+    width: 50%;
+    height: 80%;
+    margin-left: 5px;
+    background-color: #3F6844;
+    border: 2px solid #5DAA68;
+    cursor: pointer;
 }
 .replyBox img {
     position: absolute;
-    top: 10px;
+    top: 8px;
 }
 .replyBox p {
     position: absolute;
-    top: 38px;
-    left: 10px;
+    top: 34px;
+    left: 12px;
 }
 .commentAuthor {
     font-size: 10px;
@@ -36,21 +59,35 @@
 }
 .subCommentBox {
     display: flex;
-    width: 92%;
+    width: 92.5%;
     flex-wrap: wrap;
     float: right;
 }
 .subComment {
-    background-color: white;
+    background-color: rgb(228, 236, 241);
     display: grid;
     grid-template-columns: 15fr 1fr 1fr;
     align-items: center;
-    width: 100%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: 18px;
     height: 55px;
-    border: 1px solid black;
+    border: 1px solid #3F6844;
+}
+#Dark .subComment {
+    background-color: #363636;
+    display: grid;
+    grid-template-columns: 15fr 1fr 1fr;
+    width: 95%;
+    margin-left: auto;
+    margin-right: 18px;
+    height: 55px;
+    border: 1px solid #5DAA68;
+    
+
 }
 .subComment p {
-    padding-left: 30px;
+    padding-left: 35px;
     padding-right: 10px;
 }
 .subBody {
@@ -59,4 +96,49 @@
 .subComment img {
     width: 35px;
     height: 35px;
+}
+#Light .addSubcomment {
+    width: 87.9%;
+    height: 200px;
+    background-color: rgb(228, 236, 241);
+    border: 1px solid #3F6844;
+    margin-left: auto;
+    margin-right: 18px;
+}
+#Dark .addSubcomment {
+    width: 87.9%;
+    height: 200px;
+    background-color: #363636;
+    margin-left: auto;
+    border: 1px solid #5DAA68;
+
+    margin-right: 18px;
+}
+.addSubcomment textarea {
+    margin: 10px;
+    padding: 10px;
+}
+.disabledHolder {
+    position: relative;
+}
+.disabledSubTxt {
+    position: absolute;
+    top: 50px;
+    left: 180px;
+    font-size: 25px;
+}
+.subHolder {
+    position: relative;
+}
+.subHolder button {
+    position: absolute;
+    top: 40%;
+    cursor: pointer;
+}
+.closeSub {
+    position: absolute;
+    top: -10px;
+    font-size: 18px;
+    right: 15px;
+    cursor: pointer;
 }

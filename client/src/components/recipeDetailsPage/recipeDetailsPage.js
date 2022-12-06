@@ -6,7 +6,8 @@ import { getRecipeById,
     chosenRecipeIngredientsSelector,
     setChosenRecipe, 
     likeDislike,
-    setLikeDislike } from '../../slices/recipesSlice';
+    // setLikeDislike 
+} from '../../slices/recipesSlice';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticationSelector, userIDSelector } from '../../slices/authSlice';
@@ -19,6 +20,14 @@ import IngredientList from './ingredientList';
 import Comment from '../comments/comment';
 import like from '../memberArea/like.png';
 import dislike from '../memberArea/dislike.png';
+import Meat from '../recipe-list/RecipeIcons/meatIcon.png';
+import Fish from '../recipe-list/RecipeIcons/fishIcon.png';
+import Alcohol from '../recipe-list/RecipeIcons/wineIcon.png';
+import Gluten from '../recipe-list/RecipeIcons/glutenIcon.png';
+import Vegan from '../recipe-list/RecipeIcons/vegetarianIcon.png';
+import Tick from '../recipe-list/RecipeIcons/tick.png';
+import Cross from '../recipe-list/RecipeIcons/close.png';
+
 import './recipeDetailsPage.css';
 
 const RecipeDetailsPage = () => {
@@ -41,7 +50,7 @@ const RecipeDetailsPage = () => {
         dispatch(setChosenRecipe(params.id))
         // Need to check if a user is logged in so that they can leave a comment
         dispatch(getUser());
-        // window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     }, [dispatch, params.id])
     
 
@@ -51,7 +60,7 @@ const RecipeDetailsPage = () => {
             recipe_id: recipeId,
             user_id: userID
         }
-        dispatch(postComment(data));
+        dispatch(postComment(data)).then(() => dispatch(getComments(params.id)));
     }
 
     const handleLikeDislike = (type) => {
@@ -92,41 +101,129 @@ const RecipeDetailsPage = () => {
                     : <p> Ingredients Couldn't be Loaded. Please Try Again. </p>}
                 </div> 
             </div>
+                <h2 className='allergyTitle'>Allergy Info</h2> 
+            <div className='allergyIconList'>
+                <div>
+                    <img src={Meat} className='icon' alt='Meat Icon'/>
+                    { recipeInfo.contains_meat === true ?
+                    <img src={Tick} className='tick' alt='Recipe Contains Meat'/> :  
+                    <img src={Cross} className='cross' alt='Recipe Doesnt Contain Meat'/>  
+                    }
+                </div>
+                <div>
+                    <img src={Fish} className='icon' alt='Fish Icon'/>
+                    { recipeInfo.contains_fish === true ?
+                    <img src={Tick} className='tick' alt='Recipe Contains Fish' /> :  
+                    <img src={Cross} className='cross' alt='Recipe Doesnt Contain Meat'/>  
+                    }
+                </div>
+                <div>
+                    <img src={Alcohol} className='icon' alt='Alcohol Icon'/>
+                    { recipeInfo.contains_alcohol === true ?
+                    <img src={Tick} className='tick' alt='Recipe Contains Alcohol'/> :  
+                    <img src={Cross} className='cross' alt='Recipe Doesnt Contain Alcohol'/>  
+                    }
+                </div>
+                <div>
+                    <img src={Gluten} className='icon' alt='Wheat Icon'/>
+                    { recipeInfo.contains_gluten === true ?
+                    <img src={Tick} className='tick' alt='Recipe Contains Gluten'/> :  
+                    <img src={Cross} className='cross' alt='Recipe Doesnt Contain Gluten'/>  
+                    }
+                </div>
+                <div>
+                    <img src={Vegan} className='icon' alt='Vegan Icon' />
+                    { recipeInfo.is_vegan === true ?
+                    <img src={Tick} className='tick' alt='Recipe is Vegan'/> :  
+                    <img src={Cross} className='cross' alt='Recipe isnt Vegan'/>  
+                    }
+                </div>
+            </div>
+            {/* Method List */}
             <div className='methodInfo'>
                 <h2> Method </h2>
                 <div className='methodList'>
-                    <ul>
-                        <li>
-                            {recipeInfo.step_1}
-                        </li>
-                        <li>
-                            {recipeInfo.step_2}
-                        </li>
-                        <li>
-                            {recipeInfo.step_3}
-                        </li>
-                        <li>
-                            {recipeInfo.step_4}
-                        </li>
-                        <li>
-                            {recipeInfo.step_5}
-                        </li>
-                        <li>
-                            {recipeInfo.step_6}
-                        </li>
-                        <li>
-                            {recipeInfo.step_7}
-                        </li>
-                        <li>
-                            {recipeInfo.step_8}
-                        </li>
-                        <li>
-                            {recipeInfo.step_9}
-                        </li>
-                        <li>
-                            {recipeInfo.step_10}
-                        </li>
-                    </ul>
+                        { recipeInfo.step_1 !== '' ?
+                        <div>
+                            <p>
+                                {recipeInfo.step_1}
+                            </p>
+                            <hr className='ingredientDivider'/> 
+                        </div> 
+                        : '' } 
+                        { recipeInfo.step_2 !== '' ?
+                        <div>
+                            <p>
+                                {recipeInfo.step_2}
+                            </p>
+                            <hr className='ingredientDivider'/> 
+                        </div> 
+                        : '' } 
+                        { recipeInfo.step_3 !== '' ?
+                        <div>
+                            <p>
+                                {recipeInfo.step_3}
+                            </p>
+                            <hr className='ingredientDivider'/> 
+                        </div> 
+                        : '' } 
+                        { recipeInfo.step_4 !== '' ?
+                        <div>
+                            <p>
+                                {recipeInfo.step_4}
+                            </p>
+                            <hr className='ingredientDivider'/> 
+                        </div> 
+                        : '' } 
+                        { recipeInfo.step_5 !== '' ?
+                        <div>
+                            <p>
+                                {recipeInfo.step_5}
+                            </p>
+                            <hr className='ingredientDivider'/> 
+                        </div> 
+                        : '' } 
+                        { recipeInfo.step_6 !== '' ?
+                        <div>
+                            <p>
+                                {recipeInfo.step_6}
+                            </p>
+                            <hr className='ingredientDivider'/> 
+                        </div> 
+                        : '' } 
+                        { recipeInfo.step_7 !== '' ?
+                        <div>
+                            <p>
+                                {recipeInfo.step_7}
+                            </p>
+                            <hr className='ingredientDivider'/> 
+                        </div> 
+                        : '' }  
+                        { recipeInfo.step_8 !== '' ?
+                        <div>
+                            <p>
+                                {recipeInfo.step_8}
+                            </p>
+                            <hr className='ingredientDivider'/> 
+                        </div> 
+                        : '' } 
+                        { recipeInfo.step_9 !== '' ?
+                        <div>
+                            <p>
+                                {recipeInfo.step_9}
+                            </p>
+                            <hr className='ingredientDivider'/> 
+                        </div> 
+                        : '' } 
+                        { recipeInfo.step_10 !== '' ?
+                        <div>
+                            <p>
+                                {recipeInfo.step_10}
+                            </p>
+                            <hr className='ingredientDivider'/> 
+                        </div> 
+                        : '' } 
+                    
                 </div>
                 <div className='commentInfo'>
                     <h2> Comments </h2>
@@ -141,7 +238,7 @@ const RecipeDetailsPage = () => {
                             </div>
                             :
                             <div>
-                                <textarea onChange={e => dispatch(setNewCommentBody(e.target.value)) } 
+                                <textarea className='newCommentTextarea' onChange={e => dispatch(setNewCommentBody(e.target.value)) } 
                                 type='text' placeholder='Add a Comment..' maxLength={255}/> 
                                 <button className='postComment' onClick={handleCommentPost}> Post Comment </button>
                             </div>
@@ -151,7 +248,7 @@ const RecipeDetailsPage = () => {
                                 body={comment.body} author={comment.author} id={comment.id} />
                             }) : '' }
                         </div>
-                            
+                        <div className='bottomSpacer'></div>
                     </div>
                 </div>
             </div>

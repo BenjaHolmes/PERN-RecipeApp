@@ -40,12 +40,35 @@ export const deleteComment = createAsyncThunk(
         return response.data;
     }
 )
+
+export const postSubcomment = createAsyncThunk(
+    'comment/createSubcomment',
+    async(data) => {
+        const response = await axios.post(`http://localhost:4000/comments/sub`, {
+            comment_body: data.comment_body,
+            main_comment_id: data.main_comment_id,
+            user_id: data.user_id,
+            recipe_id: data.recipe_id
+        });
+        return response.data;
+    }
+)
+
+export const deleteSubcomment = createAsyncThunk(
+    'comment/deleteSubcomment',
+    async(subCommentId) => {
+        const response = await axios.delete(`http://localhost:4000/comments/sub/${subCommentId}`);
+        return response.data;
+    }
+)
             
 const initialState = {
     newCommentBody: '',
+    newSubCommentBody: '',
     mainComments: [],
     subComments: [],
     idForDeletion: [],
+    idForReply: '',
     loading: false,
     error: null
 }
@@ -57,8 +80,14 @@ const commentSlice = createSlice({
         setNewCommentBody(state, action) {
             state.newCommentBody = action.payload;
         },
+        setNewSubcommentBody(state, action) {
+            state.newSubCommentBody = action.payload;
+        },
         setCommentForDeletion(state, action) {
             state.idForDeletion = action.payload;
+        },
+        setIdForReply (state, action) {
+            state.idForReply = action.payload;
         }
     }, extraReducers: {
         [getComments.pending]: (state) => {
@@ -109,9 +138,6 @@ const commentSlice = createSlice({
         },
         [postComment.fulfilled]: (state, action) => {
             state.loading = false;
-            state.mainComments.unshift({
-                body: "Your Comment was Added Successfully"
-            });
         },
         [postComment.rejected]: (state, action) => {
             state.error = action.error.message;
@@ -130,13 +156,37 @@ const commentSlice = createSlice({
         [deleteComment.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
+        }, 
+        [postSubcomment.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [postSubcomment.fulfilled]: (state) => {
+            state.loading = false;
+        },
+        [postSubcomment.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
+        }, 
+        [deleteSubcomment.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [deleteSubcomment.fulfilled]: (state) => {
+            state.loading = false;
+        },
+        [deleteSubcomment.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
         }
 }});
 
-export const { setNewCommentBody, setCommentForDeletion } = commentSlice.actions;
+export const { setNewCommentBody, setCommentForDeletion, setIdForReply, setNewSubcommentBody } = commentSlice.actions;
 
 export const mainCommentsSelector = state => state.comment.mainComments;
 export const subCommentsSelector = state => state.comment.subComments;
 export const newCommentBodySelector = state => state.comment.newCommentBody;
+export const idForReplySelector = state => state.comment.idForReply;
+export const replyBodySelector = state => state.comment.newSubCommentBody
 
 export default commentSlice.reducer;

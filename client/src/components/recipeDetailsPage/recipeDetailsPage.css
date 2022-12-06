@@ -1,7 +1,12 @@
-.recipeInfoBox {
+#Light .recipeInfoBox {
     min-height: 1200px;
-    background-color: aliceblue;
-    
+    background-color: aliceblue; 
+    color: black;
+}
+#Dark .recipeInfoBox {
+    min-height: 1200px;
+    background-color: #181818;   
+    color: white;
 }
 .topInfo {
     display: flex;
@@ -9,6 +14,16 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+}
+#Light .topInfo h1 {
+    font-size: 40px;
+    color: #3F6844;
+    text-shadow: 2px 2px #faf1cf;
+}
+#Dark .topInfo h1 {
+    font-size: 40px;
+    color: #faf1cf;
+    text-shadow: 2px 2px #3F6844;
 }
 .topInfo img {
     width: 50%;
@@ -23,10 +38,20 @@
     justify-content: center;
     align-items: center;
 }
-.ingredientList {
+#Light .ingredientList {
     width: 40%;
     min-height: 500px;
     border: 3px solid #3F6844;
+    background-color: #5DAA68;
+    border-radius: 2%;
+}
+#Dark .ingredientList {
+    width: 40%;
+    min-height: 500px;
+    border: 3px solid #5DAA68;
+    background-color: #3F6844;
+    border-radius: 2%;
+
 }
 .methodInfo {
     display: flex;
@@ -36,10 +61,19 @@
     justify-content: center;
     align-items: center;
 }
-.methodList {
+#Light .methodList {
     width: 60%;
     min-height: 500px;
+    background-color: #5DAA68;
+    border-radius: 2%;
     border: 3px solid #3F6844;
+}
+#Dark .methodList {
+    width: 60%;
+    min-height: 500px;
+    background-color: #3F6844;
+    border-radius: 2%;
+    border: 3px solid #5DAA68;
 }
 .likeBox {
     display: flex;
@@ -47,7 +81,18 @@
     width: 100%;
     justify-content: center;
 }
-.likeBox img {
+#Light .likeBox img {
+    height: 40px;
+    width: 40px;
+    margin-left: 55px;
+    margin-right: 55px;
+    margin-top: 20px;
+    border: 2px solid #5DAA68;
+    background-color: #5DAA68;
+    border-radius: 50%;
+    padding: 10px;
+}
+#Dark .likeBox img {
     height: 40px;
     width: 40px;
     margin-left: 55px;
@@ -58,7 +103,11 @@
     border-radius: 50%;
     padding: 10px;
 }
-.likeBox img:hover {
+#Light .likeBox img:hover {
+    background-color: #181818;
+    cursor: pointer;
+}
+#Dark .likeBox img:hover {
     background-color: aliceblue;
     cursor: pointer;
 }
@@ -86,16 +135,31 @@
     align-items: center;
 }
 .commentList {
-    width: 60%;
-    min-height: 500px;
+    width: 65%;
+    height: 100%;
+    border-radius: 2%;
     border: 3px solid #3F6844;
+    background-color: #3F6844;
 }
 .ingredientListItem {
     display: grid;
-    grid-template-columns: 3fr 1fr 3fr;
+    grid-template-columns: 3fr 3fr;
     width: 100%;
+    font-size: 18px;
     padding: 5px;
     justify-items: center;
+}
+#Light .ingredientDivider {
+    width: 90%;
+    opacity: 20%;
+    background-color: #3F6844;
+    height: 2px;
+}
+#Dark .ingredientDivider {
+    width: 90%;
+    opacity: 50%;
+    background-color: #5DAA68;
+    height: 2px;
 }
 .newCommentForm {
     width: 100%;
@@ -112,9 +176,10 @@
 }
 .postComment { 
     position: absolute;
-    top: 65px;
+    top: 75px;
     width: 12%;
-    right: 20px;
+    right: 17px;
+    cursor: pointer;
 }
 .unAuthTxt {
     font-size: 30px;
@@ -123,4 +188,96 @@
     top: 30px;
     left: 18%;
     cursor: pointer;
+}
+.methodList p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    width: 95%;
+    min-height: 75px;
+    height: 100%;
+    list-style: none;
+}
+.allergyIconList {
+    width: 50%;
+    margin-top: 30px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 100px;
+    border: 2px solid #3F6844;
+    background-color: #faf1cf;
+    border-radius: 2%;
+    padding: 20px;
+}
+#Light .icon {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 2px solid #5DAA68;
+    background-color: #5DAA68;
+    border-radius: 5%;
+
+}
+#Dark .icon {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 2px solid #3F6844;
+    background-color: #3F6844;
+    border-radius: 5%;
+
+}
+
+.allergyIconList div {
+    display: flex;
+    flex-direction: column;
+}
+.tick {
+    width: 50px;
+    height: 50px;
+    margin-left: 8px;
+}
+.cross {
+    margin-left: 15px;
+    margin-top: 5px;
+    width: 34px;
+    height: 34px;
+}
+.allergyTitle {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+}
+#Light .newCommentTextarea {
+    background-color: aliceblue;
+    border: 2px solid black;
+    color: black;
+    margin: 10px;
+    padding: 10px;
+}
+#Dark .newCommentTextarea {
+    background-color: #181818;
+    border: 2px solid white;
+    color: white;
+    margin: 10px;
+    padding: 10px;
+}
+#Light .bottomSpacer {
+    width: 100%;
+    height: 15px;
+    background-color: #3F6844;
+}
+#Dark .bottomSpacer {
+    width: 100%;
+    height:15px;
+    background-color: #3F6844;
 }

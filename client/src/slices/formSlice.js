@@ -25,6 +25,7 @@ const initialState = {
     ingredients: [],
     sortedIngredients: [],
     ingredientToAdd: '',
+    ingredientAddSuccess: false,
     recipeToAdd:  {
         name: '',
         fish: false,
@@ -71,13 +72,17 @@ const formSlice = createSlice({
         },
         [addIngredient.pending]: (state, action) => {
             state.loading = true;
+            state.ingredientAddSuccess = 'loading';
             state.error = null;
         },
         [addIngredient.fulfilled]: (state, action) => {
+            state.ingredientToAdd = '';
+            state.ingredientAddSuccess = true;
             state.loading = false;            
         },
         [addIngredient.rejected]: (state, action) => {
             state.error = action.error.message;
+            state.ingredientAddSuccess = false;
             state.loading = false;
         }
     }
@@ -88,6 +93,7 @@ export const { setNewIngredient, toggleForm } = formSlice.actions;
 export const sortedIngredientListSelector = state => state.form.sortedIngredients;
 export const newIngredientSelector = state => state.form.ingredientToAdd;
 export const formOpenSelector = state => state.form.showForm;
+export const ingredientAddSuccessSelector = state => state.form.ingredientAddSuccess;
 
 
 export default formSlice.reducer;

@@ -124,7 +124,7 @@ const authSlice = createSlice({
         },
         [logOutUser.fulfilled]: (state, action) => {
             state.isAuthorised = false;
-            state.user = {};
+            state.user = '';
             state.loading = false;
         },
         [logOutUser.rejected]: (state, action) => {
@@ -150,6 +150,7 @@ export const registerUsernameSelector = state => state.auth.registerUsername;
 export const registerEmailSelector = state => state.auth.registerEmail;
 export const registerPasswordSelector = state => state.auth.registerPassword;
 export const authenticationSelector = state => state.auth.isAuthorised;
+export const userSelector = state => state.auth.user;
 
 
 export default authSlice.reducer;

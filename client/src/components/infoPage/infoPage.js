@@ -5,6 +5,7 @@ import fish from '../recipe-list/RecipeIcons/fishIcon.png';
 import alch from '../recipe-list/RecipeIcons/wineIcon.png';
 import gluten from '../recipe-list/RecipeIcons/glutenIcon.png';
 import vegan from '../recipe-list/RecipeIcons/vegetarianIcon.png';
+import loginExample from './infoImgs/LoggedInExample.png';
 
 const InfoPage = () => {
     return (
@@ -26,8 +27,8 @@ const InfoPage = () => {
                     <p className='boxText'> Once registered and logged in, you can begin to contribute and 
                         manage your own recipes, or comment on other peoples.
                     </p>
-                    <p> Picture of Logged in Area once completed </p>
-                    <p> button to click to go to the log in area </p>
+                    <img className='logExample' src={loginExample} alt='Demonstration of Members Area'/>
+                    
                 </div>
                 <div className='allergenInfo'>                    
                     <h2> Allergen Info </h2>

@@ -45,9 +45,33 @@ const deleteComment = async(req, res) => {
     })
 }
 
+const postSubcomment = async(req, res) => {
+    const comment_body = req.body.comment_body;
+    const main_comment_id = req.body.main_comment_id; 
+    const user_id = req.body.user_id; 
+    const recipe_id = req.body.recipe_id;
+    pool.query(`INSERT INTO subcomments (body, main_comment_id, user_id, recipe_id)
+    VALUES ($1, $2, $3, $4)`, [comment_body, main_comment_id, user_id, recipe_id],
+    (error, results) => {
+        if (error) throw error;
+        res.send(results.rows[0]);
+    })
+}
+
+const deleteSubComment = async(req, res) => {
+    const subCommentId = req.params.id;
+    pool.query(`DELETE FROM subcomments WHERE subcomment_id = $1`, [subCommentId],
+    (error, results) => {
+        if (error) throw error;
+        res.status(200).send("Subcomment was Removed Successfully");
+    })
+}
+
 router.get('/sub/:id', getSubcomments);
 router.get('/:id', getCommentsById);
 router.post('/post', postComment);
-router.delete('/:id', deleteComment)
+router.post('/sub', postSubcomment);
+router.delete('/:id', deleteComment);
+router.delete('/sub/:id', deleteSubComment);
 
 module.exports = router;

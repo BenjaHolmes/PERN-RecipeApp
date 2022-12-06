@@ -6,12 +6,15 @@ import { sortedIngredientListSelector,
     newIngredientSelector, 
     addIngredient,
     getAllIngredients,
+    ingredientAddSuccessSelector
 } from '../../slices/formSlice';
+import tick from '../recipe-list/RecipeIcons/tick.png';
 
 
 const Form2Ingredients = () => {
     const options = useSelector(sortedIngredientListSelector);
     const newIngredient = useSelector(newIngredientSelector);
+    const additionSuccess = useSelector(ingredientAddSuccessSelector);
     const dispatch = useDispatch();
 
     const handleNewIngredient = () => {
@@ -83,6 +86,12 @@ const Form2Ingredients = () => {
             <input type='text' placeholder='Ingredient Name' 
             onChange={e => dispatch(setNewIngredient(e.target.value))}/> 
             <button onClick={handleNewIngredient}> Add New Ingredient </button>
+            { additionSuccess === 'loading' ? <h4> Attempting to Add Ingredient </h4> : '' }
+            { additionSuccess === true ? 
+                <div className='successDiv'> 
+                    <img  src={tick} alt='Tick indicating successful ingredient addition'/> 
+                    <h4> Ingredient Added Successfully </h4> 
+                </div> : '' }
         </div>
         </div>
     );
