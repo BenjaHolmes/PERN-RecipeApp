@@ -44,6 +44,43 @@ export const addNewRecipeIngredient = createAsyncThunk(
     }
 )
 
+export const addNewRecipeSteps = createAsyncThunk(
+    'form/addSteps',
+    async(data) => {
+        const response = await axios.post(`http://localhost:4000/recipes/steps`, {
+            name: data.name,
+            created_by_user: data.created_by_user,
+            step_1: data.step_1,
+            step_2: data.step_2,
+            step_3: data.step_3,
+            step_4: data.step_4,
+            step_5: data.step_5,
+            step_6: data.step_6,
+            step_7: data.step_7,
+            step_8: data.step_8,
+            step_9: data.step_9,
+            step_10: data.step_10
+        });
+        return response.data;
+    }
+)
+
+export const addNewRecipeAllergens = createAsyncThunk(
+    'form/addAllergens',
+    async(data) => {
+        const response = await axios.post(`http://localhost:4000/recipes/allergens`, {
+            name: data.name,
+            created_by_user: data.created_by_user,
+            meat: data.meat,
+            fish: data.fish,
+            alcohol: data.alcohol,
+            gluten: data.gluten,
+            vegan: data.vegan
+        });
+        return response.data;
+    }
+)
+
 const initialState = {
     showForm: false,
     ingredients: [],
@@ -99,7 +136,9 @@ const initialState = {
         ingredient_id: '',
         quantity: ''
     }
-]
+    ], 
+    loading: false,
+    error: null
 };
 
 const formSlice = createSlice({
@@ -155,6 +194,27 @@ const formSlice = createSlice({
                     break;
                 default:
                     state.error.message = 'Failed to add Step'
+            }
+        },
+        toggleAllergen(state, action) {
+            switch(action.payload) {
+                case 'Meat':
+                    state.recipeToAdd.meat = !state.recipeToAdd.meat;
+                    break;
+                case 'Fish':
+                    state.recipeToAdd.fish = !state.recipeToAdd.fish;
+                    break;
+                case 'Alcohol':
+                    state.recipeToAdd.alcohol = !state.recipeToAdd.alcohol;
+                    break;
+                case 'Gluten':
+                    state.recipeToAdd.gluten = !state.recipeToAdd.gluten;
+                    break;
+                case 'Vegan':
+                    state.recipeToAdd.vegan = !state.recipeToAdd.vegan;
+                    break;
+                default:
+                    state.error.message = 'Failed to Toggle Allergy'
             }
         }
     }, extraReducers: {
@@ -215,6 +275,28 @@ const formSlice = createSlice({
         [addNewRecipeIngredient.rejected]: (state, action) => {
             state.error = action.error.message;
             state.loading = false;
+        },
+        [addNewRecipeSteps.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [addNewRecipeSteps.fulfilled]: (state, action) => {
+            state.loading = false;            
+        },
+        [addNewRecipeSteps.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
+        },
+        [addNewRecipeAllergens.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [addNewRecipeAllergens.fulfilled]: (state, action) => {
+            state.loading = false;            
+        },
+        [addNewRecipeAllergens.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
         }
     }
 });
@@ -225,7 +307,8 @@ export const {
     setRecipeName, 
     addToIngredients, 
     addToQuantity, 
-    addMethodStep
+    addMethodStep,
+    toggleAllergen
 } = formSlice.actions;
 
 export const sortedIngredientListSelector = state => state.form.sortedIngredients;
