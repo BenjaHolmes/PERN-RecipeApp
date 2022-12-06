@@ -1,4 +1,5 @@
 const { Router } = require('express');
+
 const pool = require('../db');
 const router = Router();
 
@@ -36,12 +37,27 @@ const postComment = async(req, res) => {
     })
 }
 
+// For this route, i check if the comment has any subComments, if so, instead of deleting the whole Chain,
+// I update the main comment to remove it's body content, so the chain is kept in tact.
 const deleteComment = async(req, res) => {
     const commentId = req.params.id;
-    pool.query("DELETE FROM comments WHERE comment_id = $1", [commentId],
+    const updateMsg = `< The Content of this Message was Removed at the Original Author's Request >`
+    pool.query(`SELECT * FROM subcomments WHERE main_comment_id = $1`, [commentId],
     (error, results) => {
-        if (error) throw error;
-        res.status(200).send("Comment was Removed Successfully");
+        if (results.rows.length) {
+            pool.query(`UPDATE comments SET body = $1
+            WHERE comment_id = $2`, [updateMsg, commentId],
+            (error, results) => {
+                if(error) throw error;
+                res.send('Comment Body Removed Successfully');
+            })
+        } else {
+            pool.query("DELETE FROM comments WHERE comment_id = $1", [commentId],
+            (error, results) => {
+            if (error) throw error;
+            res.status(200).send("Comment was Removed Successfully");
+        })
+        }   
     })
 }
 

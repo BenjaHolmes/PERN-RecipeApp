@@ -12,6 +12,7 @@ import { subCommentsSelector,
     replyBodySelector,
     postSubcomment,
     getSubcomments,
+    getComments,
 } from '../../slices/commentSlice';
 import './comment.css'
 import Subcomment from './subcomment';
@@ -27,7 +28,7 @@ const Comment = (props) => {
     const isAuthenticated = useSelector(authenticationSelector);
 
     const handleDeletion = () => {
-        dispatch(deleteComment(props.id));
+        dispatch(deleteComment(props.id)).then(()=>dispatch(getComments));
         dispatch(setCommentForDeletion(props.id));
     }
 

@@ -31,7 +31,11 @@ const NewRecipeForm = () => {
 
     return (
         <div className='newRecipeForm'>
-            <div className='progressBar'> </div>
+            <div className='progressBarHolder'>
+                <div className='progressBar'>
+                    
+                </div> 
+            </div>
             <div className='formBody'>
                 {displayFormPage()}
             </div>

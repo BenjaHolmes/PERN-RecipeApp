@@ -2,8 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const addSubComment = createAsyncThunk
-// const deleteSubComment = createAsyncThunk
 
 export const getComments = createAsyncThunk(
     'comment/getComments',

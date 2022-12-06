@@ -20,6 +20,30 @@ export const getAllIngredients = createAsyncThunk(
     }
 )
 
+export const addNewRecipe = createAsyncThunk(
+    'form/addRecipe',
+    async(data) => {
+        const response = await axios.post(`http://localhost:4000/recipes`, {
+            name: data.name,
+            created_by_user: data.userId,
+        });
+        return response.data;
+    }
+)
+
+export const addNewRecipeIngredient = createAsyncThunk(
+    'form/addRecipeIngredient',
+    async(data) => {
+        const response = await axios.post(`http://localhost:4000/recipes/ingredients`, {
+            name: data.name,
+            created_by_user: data.created_by_user,
+            ingredient_id: data.ingredient_id,
+            quantity: data.quantity
+        });
+        return response.data;
+    }
+)
+
 const initialState = {
     showForm: false,
     ingredients: [],
@@ -33,9 +57,49 @@ const initialState = {
         gluten: false,
         vegan: false,
         alcohol: false,
-        ingredients: [],
-        method: []
+        step_1: '',
+        step_2: '',
+        step_3: '',
+        step_4: '',
+        step_5: '',
+        step_6: '',
+        step_7: '',
+        step_8: '',
+        step_9: '',
+        step_10: ''
+    },
+    recipeToAddIngredients: [{
+        ingredient_id: '',
+        quantity: ''
+    }, {
+        ingredient_id: '',
+        quantity: ''
+    }, {
+        ingredient_id: '',
+        quantity: ''
+    }, {
+        ingredient_id: '',
+        quantity: ''
+    }, {
+        ingredient_id: '',
+        quantity: ''
+    }, {
+        ingredient_id: '',
+        quantity: ''
+    }, {
+        ingredient_id: '',
+        quantity: ''
+    }, {
+        ingredient_id: '',
+        quantity: ''
+    }, {
+        ingredient_id: '',
+        quantity: ''
+    }, {
+        ingredient_id: '',
+        quantity: ''
     }
+]
 };
 
 const formSlice = createSlice({
@@ -47,9 +111,54 @@ const formSlice = createSlice({
         },
         toggleForm(state) {
             state.showForm = !state.showForm;
+        },
+        setRecipeName(state, action) {
+            state.recipeToAdd.name = action.payload;
+        },
+        addToIngredients(state, action) {
+            state.recipeToAddIngredients[action.payload.position].ingredient_id = action.payload.ingredient_id;
+        },
+        addToQuantity(state, action) {
+            state.recipeToAddIngredients[action.payload.position].quantity = action.payload.quantity;
+        },
+        addMethodStep(state, action) {
+            switch(action.payload.stepNum) {
+                case 1:
+                    state.recipeToAdd.step_1 = action.payload.stepBody;
+                    break;
+                case 2:
+                    state.recipeToAdd.step_2 = action.payload.stepBody;
+                    break;
+                case 3:
+                    state.recipeToAdd.step_3 = action.payload.stepBody;
+                    break;
+                case 4:
+                    state.recipeToAdd.step_4 = action.payload.stepBody;
+                    break;
+                case 5:
+                    state.recipeToAdd.step_5 = action.payload.stepBody;
+                    break;
+                case 6:
+                    state.recipeToAdd.step_6 = action.payload.stepBody;
+                    break;
+                case 7:
+                    state.recipeToAdd.step_7 = action.payload.stepBody;
+                    break;
+                case 8:
+                    state.recipeToAdd.step_8 = action.payload.stepBody;
+                    break;
+                case 9:
+                    state.recipeToAdd.step_9 = action.payload.stepBody;
+                    break;
+                case 10:
+                    state.recipeToAdd.step_10 = action.payload.stepBody;
+                    break;
+                default:
+                    state.error.message = 'Failed to add Step'
+            }
         }
     }, extraReducers: {
-        [getAllIngredients.pending]: (state, action) => {
+        [getAllIngredients.pending]: (state) => {
             state.loading = true;
             state.error = null;
         },
@@ -70,12 +179,12 @@ const formSlice = createSlice({
             state.error = action.error.message;
             state.loading = false;
         },
-        [addIngredient.pending]: (state, action) => {
+        [addIngredient.pending]: (state) => {
             state.loading = true;
             state.ingredientAddSuccess = 'loading';
             state.error = null;
         },
-        [addIngredient.fulfilled]: (state, action) => {
+        [addIngredient.fulfilled]: (state) => {
             state.ingredientToAdd = '';
             state.ingredientAddSuccess = true;
             state.loading = false;            
@@ -84,16 +193,50 @@ const formSlice = createSlice({
             state.error = action.error.message;
             state.ingredientAddSuccess = false;
             state.loading = false;
+        },
+        [addNewRecipe.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [addNewRecipe.fulfilled]: (state, action) => {
+            state.loading = false;            
+        },
+        [addNewRecipe.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
+        },
+        [addNewRecipeIngredient.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [addNewRecipeIngredient.fulfilled]: (state, action) => {
+            state.loading = false;            
+        },
+        [addNewRecipeIngredient.rejected]: (state, action) => {
+            state.error = action.error.message;
+            state.loading = false;
         }
     }
 });
 
-export const { setNewIngredient, toggleForm } = formSlice.actions;
+export const { 
+    setNewIngredient, 
+    toggleForm, 
+    setRecipeName, 
+    addToIngredients, 
+    addToQuantity, 
+    addMethodStep
+} = formSlice.actions;
 
 export const sortedIngredientListSelector = state => state.form.sortedIngredients;
 export const newIngredientSelector = state => state.form.ingredientToAdd;
 export const formOpenSelector = state => state.form.showForm;
 export const ingredientAddSuccessSelector = state => state.form.ingredientAddSuccess;
+
+export const newRecipeNameSelector = state => state.form.recipeToAdd.name;
+export const newRecipeIdSelector = state => state.form.recipeToAdd.newId;
+export const newRecipeIngredientList = state => state.form.recipeToAddIngredients;
+export const newRecipeSelector = state => state.form.recipeToAdd;
 
 
 export default formSlice.reducer;

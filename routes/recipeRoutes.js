@@ -43,10 +43,56 @@ const handleLikeDislike = async(req, res) => {
     res.send(likeType);
 }
 
+// Begin to Create a new Recipe
+const createNewRecipe = async(req, res) => {
+    const name = req.body.name;
+    const created_by_user = req.body.created_by_user;
+    const likeDislike = 0;
+    const picId = null;
+    pool.query(`INSERT INTO recipes (name, number_of_likes, 
+        number_of_dislikes, created_by_user, picture_id)
+        VALUES ($1, $2, $3, $4, $5)`, [name, likeDislike, likeDislike, created_by_user, picId],
+        (error, results) => {
+            if (error) throw error;
+            res.status(201).send('Recipe Added Successfully');
+            // // I dont think i can return the newly created id without a Get request also
+            // pool.query(`SELECT * FROM recipes WHERE name = $1 AND created_by_user = $2`
+            // , [name, created_by_user],
+            // (error, results) => {
+            //     if (error) throw error;
+            //     res.send(results.rows[0]);
+            // })
+        })
+}
+
+// Create a Recipe Step 2
+const createNewRecipeIngredients = async(req, res) => {
+    const { name, created_by_user, ingredient_id, quantity } = req.body;
+
+    pool.query(`SELECT * FROM recipes WHERE name = $1 AND created_by_user = $2`,
+    [name, created_by_user], 
+    (error, results) => {
+        if (error) throw error;
+        if(results.rows.length) {
+            const recipeId = results.rows[0].id;
+            pool.query(`INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity)
+            VALUES ($1, $2, $3)`, [recipeId, ingredient_id, quantity],
+                (error, results) => {
+                if (error) throw error;
+                    res.status(201).send("Ingredients Added Successfully");
+            })
+        } else {
+            res.send('We Couldnt Find a Recipe with these Details');
+        }
+    })
+}
+
 
 router.get('/all', getRecipes);
 router.get('/:id', getRecipeById);
 router.post('/likes', handleLikeDislike);
+router.post('/', createNewRecipe);
+router.post('/ingredients', createNewRecipeIngredients);
 
 module.exports = router;
 
