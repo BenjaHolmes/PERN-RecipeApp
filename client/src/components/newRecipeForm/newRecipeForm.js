@@ -8,15 +8,20 @@ import Form1Name from './form1-Name';
 import Form2Ingredients from './form2-Ingredients';
 import Form3Steps from './form3-Steps';
 import Form4Allergens from './form4-Allergens';
+import { barPercentSelector } from '../../slices/formSlice';
 
 const NewRecipeForm = () => {
     const dispatch = useDispatch();
     const formPage = useSelector(formPageSelector);
+    const barPercent = useSelector(barPercentSelector);
+    const barPercentWithSymbol = `${barPercent}%`
 
     useEffect(() => {
         dispatch(getAllIngredients());
     }, [dispatch]);
 
+
+    
     const displayFormPage = () => {
         if (formPage === 1) {
             return <Form1Name />
@@ -32,9 +37,9 @@ const NewRecipeForm = () => {
     return (
         <div className='newRecipeForm'>
             <div className='progressBarHolder'>
-                <div className='progressBar'>
-                    
-                </div> 
+                <div className='progBar'>
+                    <div id='innerBar' style={{ width: barPercentWithSymbol }}> </div>
+                </div>
             </div>
             <div className='formBody'>
                 {displayFormPage()}

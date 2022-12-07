@@ -36,6 +36,9 @@ const memberAreaSlice = createSlice({
         },
         decrementFormPage(state) {
             state.formPage--
+        },
+        setFormPage(state, action) {
+            state.formPage = action.payload;
         }
     }, extraReducers: {
         [getMembersRecipes.pending]: (state) => {
@@ -68,7 +71,10 @@ const memberAreaSlice = createSlice({
 });
 
 export const { togglePopup, 
-    setItemForDeletion, incrementFormPage, decrementFormPage } = memberAreaSlice.actions;
+    setItemForDeletion, 
+    incrementFormPage, 
+    decrementFormPage, 
+    setFormPage } = memberAreaSlice.actions;
 export const membersRecipesSelector = state => state.memberArea.membersRecipes;
 export const idForDeletionSelector = state => state.memberArea.idForDeletion;
 export const formPageSelector = state => state.memberArea.formPage;

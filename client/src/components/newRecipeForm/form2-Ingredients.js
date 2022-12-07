@@ -11,6 +11,8 @@ import { sortedIngredientListSelector,
     addToQuantity
 } from '../../slices/formSlice';
 import tick from '../recipe-list/RecipeIcons/tick.png';
+import { setBarPercent } from '../../slices/formSlice';
+import { useEffect } from 'react';
 
 
 const Form2Ingredients = () => {
@@ -18,6 +20,10 @@ const Form2Ingredients = () => {
     const newIngredient = useSelector(newIngredientSelector);
     const additionSuccess = useSelector(ingredientAddSuccessSelector);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setBarPercent(50))
+    }, [dispatch]);
 
     const handleNewIngredient = () => {
         const data = {

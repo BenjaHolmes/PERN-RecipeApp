@@ -9,9 +9,14 @@ import { addNewRecipe,
     newRecipeSelector,
     addNewRecipeSteps,
     addNewRecipeAllergens,
+    toggleForm,
     
 } from '../../slices/formSlice';
+import setFormPage from '../../slices/memberAreaSlice';
 import { userIDSelector } from '../../slices/authSlice';
+import { getMembersRecipes } from '../../slices/memberAreaSlice';
+import { useEffect } from 'react';
+import { setBarPercent } from '../../slices/formSlice';
 
 const Form4Allergens = () => {
     const dispatch = useDispatch();
@@ -20,6 +25,10 @@ const Form4Allergens = () => {
     const ingredientList = useSelector(newRecipeIngredientList);
     const newRecipe = useSelector(newRecipeSelector);
     
+    useEffect(() => {
+        dispatch(setBarPercent(100))
+    }, [dispatch]);
+
     const createRecipe = () => {
         const initialData = {
             name: recipeName,
@@ -40,14 +49,9 @@ const Form4Allergens = () => {
                 }))
             })
         }
-        const finalData = {
+        const stepData = {
             name: recipeName,
             created_by_user: userId,
-            meat: newRecipe.meat,
-            fish: newRecipe.fish,
-            alcohol: newRecipe.alcohol,
-            gluten: newRecipe.gluten,
-            vegan: newRecipe.vegan,
             step_1: newRecipe.step_1,
             step_2: newRecipe.step_2,
             step_3: newRecipe.step_3,
@@ -59,10 +63,28 @@ const Form4Allergens = () => {
             step_9: newRecipe.step_9,
             step_10: newRecipe.step_10
         }
+        const allergenData = {
+            name: recipeName,
+            created_by_user: userId,
+            meat: newRecipe.meat,
+            fish: newRecipe.fish,
+            alcohol: newRecipe.alcohol,
+            gluten: newRecipe.gluten,
+            vegan: newRecipe.vegan
+        }
+
+        const finalStep = () => {
+            dispatch(toggleForm());
+            dispatch(setFormPage(1));
+            window.scrollTo(0,0);
+        }
+
         dispatch(addNewRecipe(initialData))
-        .then(setTimeout(mapIngreds, 3000))
-        .then(() => dispatch(addNewRecipeSteps(finalData)))
-        .then(() => dispatch(addNewRecipeAllergens(finalData)));
+        .then(setTimeout(mapIngreds, 1000))
+        .then(() => dispatch(addNewRecipeSteps(stepData)))
+        .then(() => dispatch(addNewRecipeAllergens(allergenData)))
+        .then(() => dispatch(getMembersRecipes(userId)))
+        .then(() => finalStep());
     }
 
     return (
@@ -100,7 +122,7 @@ const Form4Allergens = () => {
                 </div>
             </div>
             <div className='submitHolder'>
-                <button onClick={createRecipe}> Click Here to Submit your New Recipe </button>
+                <button onClick={createRecipe}> Click Here to Finalise and Submit your New Recipe </button>
             </div>
         </div>
     );

@@ -2,10 +2,16 @@ import React from 'react';
 import './form.css';
 import { addMethodStep, newRecipeSelector } from '../../slices/formSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { setBarPercent } from '../../slices/formSlice';
 
 const Form3Steps = () => {
     const dispatch = useDispatch();
     let newRecipe = useSelector(newRecipeSelector)
+
+    useEffect(() => {
+        dispatch(setBarPercent(75))
+    }, [dispatch]);
 
     return (
         <div>

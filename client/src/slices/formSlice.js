@@ -87,6 +87,7 @@ const initialState = {
     sortedIngredients: [],
     ingredientToAdd: '',
     ingredientAddSuccess: false,
+    barPercent: 0,
     recipeToAdd:  {
         name: '',
         fish: false,
@@ -147,6 +148,9 @@ const formSlice = createSlice({
     reducers: {
         setNewIngredient(state, action) {
             state.ingredientToAdd = action.payload;
+        },
+        setBarPercent(state, action) {
+            state.barPercent = action.payload;
         },
         toggleForm(state) {
             state.showForm = !state.showForm;
@@ -308,13 +312,15 @@ export const {
     addToIngredients, 
     addToQuantity, 
     addMethodStep,
-    toggleAllergen
+    toggleAllergen,
+    setBarPercent
 } = formSlice.actions;
 
 export const sortedIngredientListSelector = state => state.form.sortedIngredients;
 export const newIngredientSelector = state => state.form.ingredientToAdd;
 export const formOpenSelector = state => state.form.showForm;
 export const ingredientAddSuccessSelector = state => state.form.ingredientAddSuccess;
+export const barPercentSelector = state => state.form.barPercent;
 
 export const newRecipeNameSelector = state => state.form.recipeToAdd.name;
 export const newRecipeIdSelector = state => state.form.recipeToAdd.newId;

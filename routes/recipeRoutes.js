@@ -115,6 +115,8 @@ const createNewRecipeSteps = async(req, res) => {
     })
 }
 
+
+//Creates a Syntax Error
 const createNewRecipeAllergens = async(req, res) => {
     const { name, created_by_user, meat, fish, alcohol, gluten, vegan } = req.body;
 
@@ -126,7 +128,8 @@ const createNewRecipeAllergens = async(req, res) => {
         if(results.rows.length) {
             const recipeId = results.rows[0].id;
             pool.query(`INSERT INTO allergy_info 
-            (recipe_id, contains_meat, contains_fish, contains_alcohol, contains_gluten, is_vegan)`,
+            (recipe_id, contains_meat, contains_fish, contains_alcohol, contains_gluten, is_vegan)
+            VALUES ($1, $2, $3, $4, $5, $6)`,
             [recipeId, meat, fish, alcohol, gluten, vegan],
                 (error, results) => {
                     if (error) throw error;

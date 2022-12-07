@@ -59,7 +59,7 @@ const RecipeList = () => {
             <main className='recipeCardHolder'>
                 { recipes != null ? recipes.map((data, index) => 
                 <RecipeCard key={index} name={data.name} numLikes={data.number_of_likes}
-                numDislikes={data.number_of_dislikes} id={data.id} picId={data.picture_id} />) 
+                numDislikes={data.number_of_dislikes} id={data.recipe_id} picId={data.picture_id} />) 
                 : ''}
             </main>
         </div>

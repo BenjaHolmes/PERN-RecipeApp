@@ -27,6 +27,7 @@ import Gluten from '../recipe-list/RecipeIcons/glutenIcon.png';
 import Vegan from '../recipe-list/RecipeIcons/vegetarianIcon.png';
 import Tick from '../recipe-list/RecipeIcons/tick.png';
 import Cross from '../recipe-list/RecipeIcons/close.png';
+import altImgPath from './placeholder.jpg';
 
 import './recipeDetailsPage.css';
 
@@ -40,20 +41,19 @@ const RecipeDetailsPage = () => {
     const mainComments = useSelector(mainCommentsSelector);
     const newCommentBody = useSelector(newCommentBodySelector);
     const userID = useSelector(userIDSelector)
-    const imgPath = `/RecipeImgs/${recipeInfo.picture_id}.jpg`;
+    
 
     useEffect(() => {
-        dispatch(getRecipeById(params.id));
-        dispatch(getRecipesIngredients(params.id));
-        dispatch(getComments(params.id));
-        dispatch(getSubcomments(params.id));
-        dispatch(setChosenRecipe(params.id))
+        dispatch(getRecipeById(params.id))
+        .then(() => dispatch(getRecipesIngredients(params.id)))
+        .then(() => dispatch(getComments(params.id)))
+        .then(() => dispatch(getSubcomments(params.id)))
+        .then(() => dispatch(setChosenRecipe(params.id)));
         // Need to check if a user is logged in so that they can leave a comment
         dispatch(getUser());
         window.scrollTo(0, 0);
     }, [dispatch, params.id])
     
-
     const handleCommentPost = () => {
         const data = {
             comment: newCommentBody,
@@ -75,7 +75,10 @@ const RecipeDetailsPage = () => {
         <div className='recipeInfoBox'>
             <div className='topInfo'>
                 <h1> {recipeInfo.name} </h1>
-                <img src={imgPath} alt='' />
+                { recipeInfo.picture_id !== null ? 
+                <img src={ `/RecipeImgs/${recipeInfo.picture_id}.jpg`} alt='' />
+                : <img src={altImgPath} alt='' />
+                }
             </div>
             <div className='likeBox'>
                 <div className='likes'>
