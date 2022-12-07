@@ -121,8 +121,25 @@ const Form4Allergens = () => {
                     <label> Is Your Recipe Vegan? </label>
                 </div>
             </div>
+            <div className='formWarnings'>
+                { recipeName === '' ? 
+                <p><span className='formX'>X</span>Please Choose a Recipe Name (Min 4 Characters)</p> : ''}
+                { ingredientList[0].ingredient_id === '' || ingredientList[0].quantity === '' ?
+                <p><span className='formX'>X</span> Please Add at least One Ingredient</p> : ''}
+                { newRecipe.step_1 === '' ?
+                <p><span className='formX'>X</span>Please Add Method Steps to Your Recipe (Min 1 Step)</p> : ''}
+                { newRecipe.meat === true && newRecipe.vegan === true ? 
+                <p><span className='formX'>X</span> A Recipe cannot both have Meat and be Vegan, please ammend </p> : ''}
+                { newRecipe.fish === true && newRecipe.vegan === true ? 
+                <p><span className='formX'>X</span> A Recipe cannot both have Fish and be Vegan, please ammend </p> : ''}
+            </div>
             <div className='submitHolder'>
+                { recipeName !== '' 
+                && newRecipe.step_1 !== '' 
+                && ingredientList[0].ingredient_id !== '' 
+                && ingredientList[0].quantity !== '' ?
                 <button onClick={createRecipe}> Click Here to Finalise and Submit your New Recipe </button>
+                : '' }
             </div>
         </div>
     );

@@ -242,20 +242,63 @@
     background-color: rgb(25, 61, 37);
 } 
 
-.deletePopup {
+#Light .deletePopup {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border: 1px dotted #5DAA68;
-    background-color: #df9898;
+    border: 3px solid #000000;
+    background-color: #5DAA68;
+    height: 125px;
     width: 75%;
     margin-left:auto;
     margin-right: auto;
+    position: relative;
+}
+#Dark .deletePopup {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 3px solid #000000;
+    background-color: #3F6844;
+    height: 125px;
+    width: 75%;
+    margin-left:auto;
+    margin-right: auto;
+    position: relative;
+}
+.leftPopup {
+    font-size: 21px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px rgb(5, 0, 0);
 }
 .rightPopup button {
     width: 60px;
     padding: 5px;
     margin: 5px;
+    border: 2px solid black;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+
+}
+.deleteButton {
+    background-color: #f00e0e;
+    position: absolute;
+    right: 0;
+    bottom: 1px;
+}
+.deleteButton:hover {
+    background-color: #5e0909;
+}
+.cancelButton {
+    background-color: rgb(150, 150, 150);
+    position: absolute;
+    bottom: 1px;
+    right: 70px;
+}
+.cancelButton:hover {
+    background-color: rgb(70, 70, 70);
 }
 #Light .noRecipeText {
     display: flex;

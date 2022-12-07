@@ -35,8 +35,8 @@ const MemberRecipe = (props) => {
                         <p> You wont be able to recover it.</p>
                     </div>
                         <div className='rightPopup'>
-                        <button onClick={handleDeletion}> Delete </button>
-                        <button onClick={closePopup}> Cancel </button>
+                        <button className='cancelButton' onClick={closePopup}> Cancel </button>
+                        <button className='deleteButton' onClick={handleDeletion}> Delete </button>
                     </div>
                 </motion.div>
                 : '' }
