@@ -1,16 +1,18 @@
 import React from 'react';
 import './article.css';
 
-const ArticleCard = () => {
+const ArticleCard = (props) => {
     return (
         <div>
-            <div className='articleCard'>
-                <p className='title'> Article Header </p>
-                <p className='subheading'> Article Sub-Heading </p>
+            <a href={props.siteURL} target='_blank' rel='noreferrer'>
+            <div className='articleCard' style={{backgroundImage: `url(${props.picURL}`}}>
+                <p className='title'> {props.title} </p>
+                <p className='subheading'> {props.subtitle} </p>
             </div>
             <div className='articleImgHolder'>
-                
+                {/* <img src={props.picURL} alt=''/> */}
             </div>
+            </a>
         </div>
     );
 }

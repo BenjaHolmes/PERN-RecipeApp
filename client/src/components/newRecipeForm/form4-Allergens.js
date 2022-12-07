@@ -129,9 +129,9 @@ const Form4Allergens = () => {
                 { newRecipe.step_1 === '' ?
                 <p><span className='formX'>X</span>Please Add Method Steps to Your Recipe (Min 1 Step)</p> : ''}
                 { newRecipe.meat === true && newRecipe.vegan === true ? 
-                <p><span className='formX'>X</span> A Recipe cannot both have Meat and be Vegan, please ammend </p> : ''}
+                <p><span className='formX'>X</span> A Recipe cannot both have Meat and be Vegan </p> : ''}
                 { newRecipe.fish === true && newRecipe.vegan === true ? 
-                <p><span className='formX'>X</span> A Recipe cannot both have Fish and be Vegan, please ammend </p> : ''}
+                <p><span className='formX'>X</span> A Recipe cannot both have Fish and be Vegan </p> : ''}
             </div>
             <div className='submitHolder'>
                 { recipeName !== '' 

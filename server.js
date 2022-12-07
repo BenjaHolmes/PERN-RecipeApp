@@ -14,6 +14,7 @@ const recipeRoutes = require('./routes/recipeRoutes');
 const memberAreaRoutes = require('./routes/memberAreaRoutes');
 const ingredientRoutes = require('./routes/ingredientRoutes');
 const commentRoutes = require('./routes/commentRoutes');
+const articleRoutes = require('./routes/articleRoutes');
 
 // Middleware ------------------------------------------------------------
 
@@ -106,6 +107,7 @@ app.use('/recipes', recipeRoutes);
 app.use('/members', memberAreaRoutes);
 app.use('/ingredients', ingredientRoutes);
 app.use('/comments', commentRoutes);
+app.use('/articles', articleRoutes);
 
 
 // Server Setup ----------------------------------------------------------

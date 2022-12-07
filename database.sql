@@ -64,3 +64,12 @@ CREATE TABLE subcomments (
 
 ALTER TABLE subcomments
 ADD COLUMN recipe_id BIGSERIAL REFERENCES recipes(id)
+
+--Adding Articles Table
+CREATE TABLE articles (
+  id BIGSERIAL PRIMARY KEY,
+  title VARCHAR(255),
+  subtitle VARCHAR(255),
+  site_url VARCHAR(255),
+  pic_url VARCHAR(255)
+)

@@ -222,6 +222,69 @@ VALUES ('Agreed, im going to have it tonight!', 1, 7);
 INSERT INTO subcomments (body, main_comment_id, user_id)
 VALUES ('Such a novel idea.', 2, 8);
 
+--Articles
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Emulsifiers', 'Should we be Avoiding Them?', 
+'https://www.bbc.co.uk/food/articles/emulsifiers', 'https://ichef.bbci.co.uk/images/ic/688xn/p0dbrrk9.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Budget Vegan', 'Meal Plan for Two', 
+'https://www.bbc.co.uk/food/articles/vegan_budget_meal_plan_for_two', 'https://ichef.bbci.co.uk/images/ic/688xn/p0dlwjxr.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Christmas Dinner', 'Hacks to Save Energy',
+'https://www.bbc.co.uk/food/articles/reduce_christmas_energy_spend', 'https://ichef.bbci.co.uk/images/ic/688xn/p0dh2qnp.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('£1 Meals', 'Family Meal Plan', 
+'https://www.bbc.co.uk/food/articles/budget_family_meal_plan_for_four', 'https://ichef.bbci.co.uk/images/ic/688xn/p0d4ngbl.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Flavour Bombs', 'Liven up your Food', 
+'https://www.bbc.co.uk/food/articles/flavour_bombs', 'https://ichef.bbci.co.uk/images/ic/688xn/p0d553yd.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Nice Rice!', 'How to Cook a Perfect Risotto', 
+'https://www.bbc.co.uk/food/articles/perfect_risotto', 'https://ichef.bbci.co.uk/images/ic/1376x774/p0czvy55.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Pregnancy', 'What Foods to Avoid', 
+'https://www.bbc.co.uk/food/articles/what_you_should_and_shouldnt_eat_in_pregnancy', 'https://ichef.bbci.co.uk/images/ic/688xn/p0638q2t.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Cheese', 'Five Unbelieveable Uses', 
+'https://www.bbc.co.uk/food/articles/unbelievable_cheese', 'https://ichef.bbci.co.uk/images/ic/688xn/p0c7w1ll.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Perfect Oven Chips', 'The Big Secret', 
+'https://www.bbc.co.uk/food/articles/Perfect_oven_chips', 'https://ichef.bbci.co.uk/images/ic/688xn/p0cg1h92.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Social Eating', 'To Help beat Lonliness', 
+'https://www.bbc.co.uk/food/articles/eating_together', 'https://ichef.bbci.co.uk/images/ic/688xn/p0c58dcm.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Gluten-Free Baking', 'Top Tips Revealed', 
+'https://www.bbc.co.uk/food/articles/tips_for_gluten-free_baking', 'https://ichef.bbci.co.uk/images/ic/688xn/p062h6rv.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Foraging Safely', 'How to do so next Spring', 
+'https://www.bbc.co.uk/food/articles/urban_foraging', 'https://ichef.bbci.co.uk/images/ic/688xn/p0bznfy2.jpg')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Wall-Crawling Menace!', 'Jameson Ups Reward for Pictures of Spider-Man', 
+'https://www.thedailybugle.net/', 'https://png.pngitem.com/pimgs/s/631-6315006_daily-bugle-black-and-white-hd-png-download.png')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('Meal Times', 'Have we got them all wrong?', 
+'https://www.bbc.co.uk/food/articles/eating_times', 'https://ichef.bbci.co.uk/images/ic/688xn/p0bpnzxf.jpg')
+
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('', '', '', '')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('', '', '', '')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('', '', '', '')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('', '', '', '')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('', '', '', '')
+INSERT INTO articles (title, subtitle, site_url, pic_url)
+VALUES ('', '', '', '')
+
+
+
+
+
+
+
 -- Join All Recipe Info
 SELECT * FROM recipes
 JOIN recipe_ingredients ON
