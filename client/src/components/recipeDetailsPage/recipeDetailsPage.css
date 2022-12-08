@@ -381,4 +381,7 @@
 .topInfo img {
     width: 80%;
 }
+.topInfo h1 {
+    text-align: center;
+}
 }
