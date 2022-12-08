@@ -39,3 +39,12 @@ code {
 * {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
+@media screen and (min-width: 320px) and (max-width: 450px) {
+#Light .content-container {
+  flex-direction: column;
+}
+#Dark .content-container {
+  flex-direction: column;
+}
+}

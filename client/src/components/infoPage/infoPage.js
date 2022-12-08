@@ -19,7 +19,9 @@ const InfoPage = () => {
                     <p className='boxText'> This App is a place to create and share your favourite
                     healthy recipes with other users.
                     Health food novice or pro, there'll be something new for you
-                    here, which can help you on the road to a healthier life.
+                    here, which can help you on the road to a healthier life. <br /> <br/>
+                    Feel free to browse healthy food articles on the main page, or sign up to create your
+                    own recipes.
                     </p>
                 </div>
                 <div className='logInInfo'> 

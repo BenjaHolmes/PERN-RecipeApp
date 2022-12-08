@@ -313,3 +313,76 @@
     margin-right: 15%;
     font-size: 30px;
 }
+
+@media screen and (min-width: 320px) and (max-width: 450px) {
+    #Dark .statisticsBox {
+        flex-direction: column;
+    }
+    #Light .statisticsBox {
+        flex-direction: column;
+    }
+    #Light .prevRecipe {
+        width: 135%;
+        height: 80px;
+    }
+    #Dark .prevRecipe {
+        width: 135%;
+        height: 80px;
+    }
+    #Light .prevRecipeTitles {
+        width: 80%;
+        margin-left: 0px;
+    }
+    #Dark .prevRecipeTitles {
+        width: 80%;
+        margin-left: 0px;
+    }
+    .deleteText {
+        height: 60px;
+    }
+    #Light .likeStats {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+    }
+    #Dark .likeStats {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+    }
+    #Light .deletePopup {
+        width: 350px;
+        margin-left: 25px;
+    }
+    #Dark .deletePopup {
+        width: 350px;
+        margin-left: 25px;
+    }
+    .leftPopup {
+        font-size: 13px;
+    }
+    #Light .recipeBuildBox h3 {
+        width: 100%;
+    }
+    #Dark .recipeBuildBox h3 {
+        width: 100%;
+    }
+    #Light .formGuidelines {
+        width: 90%;
+        height: 300px;
+        text-align: center;
+    }
+    #Light .formGuidelines ul {
+        margin-left: -20px;
+    }
+    #Dark .formGuidelines {
+        width: 90%;
+        height: 100%;
+        text-align: center;
+    }
+    #Dark .formGuidelines ul {
+        margin-left: -20px;
+    }
+}

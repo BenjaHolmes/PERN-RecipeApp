@@ -323,3 +323,67 @@
     border: 2px solid black;
     cursor: pointer;
 }
+
+@media screen and (min-width: 320px) and (max-width: 450px) {
+
+#Light .formGuidelines {
+    width: 90%;
+    height: 300px;
+    text-align: center;
+}
+#Light .formGuidelines ul {
+    margin-left: -20px;
+}
+#Dark .formGuidelines {
+    width: 90%;
+    height: 100%;
+    text-align: center;
+}
+#Dark .formGuidelines ul {
+    margin-left: -20px;
+}
+.ingredientsInputHolder select {
+    width: 90%;
+    height: 40px;
+    margin: 25px;
+    text-align: center;
+}
+.quantityInput {
+    width: 80%;
+    height: 33px;
+    margin-left: 40px;
+    text-align: center;
+    margin-top: -10px;
+
+}
+.ingredientsInputHolder div {
+    padding-bottom: 15px;
+    border-bottom: 2px solid grey;
+}
+#Light .addNewIngredient {
+    height: 100%;
+    min-height: 200px;
+    width: 90%;
+}
+#Dark .addNewIngredient {
+    height: 100%;
+    min-height: 200px;
+    width: 90%;
+}
+.addNewIngredient h4 {
+    text-align: center;
+}
+.addNewIngredient input {
+    width: 75%;
+}
+.formTitle {
+    text-align: center;
+}
+.checkHolder {
+    width: 100%;
+    margin-left: 200px
+}
+.submitHolder button {
+    height: 100px;
+}
+}

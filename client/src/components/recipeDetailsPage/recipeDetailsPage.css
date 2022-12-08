@@ -281,3 +281,104 @@
     height:15px;
     background-color: #3F6844;
 }
+
+@media screen and (min-width: 320px) and (max-width: 450px) {
+    #Light .ingredientList {
+        width: 80%;
+    }
+    #Dark .ingredientList {
+        width: 80%;
+    }
+    .allergyIconList {
+        width: 80%;
+        margin-top: 30px;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: space-between;
+        height: 100%;
+        min-height: 100px;
+        border: 2px solid #3F6844;
+        background-color: #faf1cf;
+        border-radius: 2%;
+        padding: 20px;
+    }
+    
+.allergyIconList div {
+    display: flex;
+    flex-direction: column;
+}
+#Light .icon {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 2px solid #5DAA68;
+    background-color: #5DAA68;
+    border-radius: 5%;
+    margin-left: 12px;
+
+}
+#Dark .icon {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 2px solid #3F6844;
+    background-color: #3F6844;
+    border-radius: 5%;
+    margin-left: 12px;
+
+}
+#Dark .methodList {
+    width: 90%;
+    min-height: 500px;
+    background-color: #3F6844;
+    border-radius: 2%;
+    border: 3px solid #5DAA68;
+}
+#Light .methodList {
+    width: 90%;
+    min-height: 500px;
+    background-color: #5DAA68;
+    border-radius: 2%;
+    border: 3px solid #3F6844;
+}
+.methodList p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    width: 85%;
+    min-height: 75px;
+    height: 100%;
+    margin-left: 30px;
+    list-style: none;
+}
+.commentList {
+    width: 95%;
+    height: 100%;
+    border-radius: 2%;
+    border: 3px solid #3F6844;
+    background-color: #3F6844;
+}
+.unAuthTxt {
+    font-size: 20px;
+    position: absolute;
+    font-weight: bold;
+    top: 50px;
+    left: 12%;
+    cursor: pointer;
+}
+.postComment { 
+    position: absolute;
+    top: 138px;
+    width: 17%;
+    right: 8px;
+    cursor: pointer;
+}
+.topInfo img {
+    width: 80%;
+}
+}

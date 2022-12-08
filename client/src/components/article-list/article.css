@@ -54,6 +54,7 @@
     text-align: center;
     padding: 1px;
     padding-right: 5px;
+    border-radius: 0 0 0 8px;
 }
 #Dark .title {
     font-weight: bold;
