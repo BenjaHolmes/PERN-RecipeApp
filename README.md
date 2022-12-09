@@ -11,7 +11,8 @@ This project is meant to demonstrate everything i have learned so far. I have im
 or delete their own recipes, a like/dislike system for member's recipes, the ability for logged-in users to comment on recipes, as well as the abillity
 to reply to comments to create a comment chain, a collapsible menu, a light/dark mode.
 
-The hardest part of this project was keeping my file structure and slices in a logical order as the functionality of the app grew. 
+The hardest parts of this project were keeping my file structure and slices in a logical order as the functionality of the app grew, and finding out
+where problems were arising from between redux/react/express/postgres etc.
 
 
 ### Languages and Libraries Used
