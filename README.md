@@ -64,8 +64,13 @@ their total number of likes and dislikes, and allows them to create a new one vi
 *This is part of the new recipe form the logged-in members can use.
 
 <ins> Mobile Site Responsive Design </ins>
+
 ![mobilePage](https://user-images.githubusercontent.com/90611253/206813342-d776aadc-891f-4498-9701-3221f3c312db.png)
+
+
 ![mobilePage2](https://user-images.githubusercontent.com/90611253/206813344-34e85178-7a48-48e0-a7de-1e1ae17c52a5.png)
+
+
 *Here are some examples of the site in a mobile viewport size.
 
 
